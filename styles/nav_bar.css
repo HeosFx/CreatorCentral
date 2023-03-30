@@ -1,0 +1,111 @@
+/* Logo */
+
+.logo {
+    height: 50px;
+    width: auto;
+}
+
+/* Buttons in the navigation bar */
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.big-button-container {
+    order: 2;
+    display: flex;
+    background: whitesmoke;
+    width: 230px;
+    height: auto;
+    border-radius: 60px;
+    padding: 0;
+    margin: 0;
+}
+
+.connexion-button {
+    align-items: center;
+    appearance: none;
+    background: none;
+    border-width: 0;
+    box-sizing: border-box;
+    color: #000000;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'LeagueSpartan', serif;
+    font-weight: bolder;
+    font-size: 30px;
+    letter-spacing: 0;
+    line-height: 1em;
+    margin: 0;
+    opacity: 1;
+    outline: 0;
+    padding: 15px 15px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-rendering: geometricprecision;
+    transition: opacity 300ms cubic-bezier(.694, 0, 0.335, 1), background-color 100ms cubic-bezier(.694, 0, 0.335, 1), color 100ms cubic-bezier(.694, 0, 0.335, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: central;
+    white-space: nowrap;
+}
+
+/* Buttons animation */
+
+.connexion-button:before {
+    border-radius: 60px;
+    animation: opacityFallbackOut .5s step-end forwards;
+    backface-visibility: hidden;
+    background-color: #b9b9b9;
+    clip-path: polygon(-1% 0, 0 0, -25% 100%, -1% 100%);
+    content: "";
+    padding-block: 25px;
+    left: 5px;
+    position: absolute;
+    top: 5px;
+    transform: translateZ(0);
+    transition: clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1), -webkit-clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1);
+    width: 90%;
+}
+
+.connexion-button:hover:before {
+    border-radius: 60px;
+    animation: opacityFallbackIn 0s step-start forwards;
+    clip-path: polygon(0 0, 101% 0, 101% 101%, 0 101%);
+}
+
+.connexion-button:after {
+    border-radius: 60px;
+    background-color: #FFFFFF;
+}
+
+.connexion-button span {
+    z-index: 1;
+    position: relative;
+}
+
+/* Specifications (Green buttons) */
+
+#sign-in-button {
+    border-radius: 60px;
+    background-color: #2EE985;
+}
+
+#sign-in-button:before {
+    width: 100%;
+    background-color: #359860;
+    top: 0;
+    left: 0;
+    height: 10px;
+}

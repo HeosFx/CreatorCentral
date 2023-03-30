@@ -6,6 +6,8 @@
     <title>Creator Central</title>
     <link rel="stylesheet" href="./styles/background-image.css">
     <link rel="stylesheet" href="./styles/homepage.css">
+    <link rel="stylesheet" href="./styles/font.css">
+    <link rel="stylesheet" href="./styles/nav_bar.css">
 </head>
 
 <body>
