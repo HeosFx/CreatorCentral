@@ -1,0 +1,12 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper{
+    margin:auto;
+    height: 100%
+}
+.header, .header h1{
+    margin: auto;
+}
