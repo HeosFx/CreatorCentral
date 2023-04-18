@@ -1,0 +1,36 @@
+:root {
+    /* Color constants definition */
+    --green-accent: #2ee985;
+    --green-accent-dark: #39c97b;
+    --green-accent-darker: #228c52;
+    --lighter-grey: #979eb7;
+    --light-grey:#545660;
+    --grey:#242834;
+    --dark-grey: #191c21;;
+    --darker-grey: #16181c;
+}
+
+body {
+    color: white;
+    font-family: 'LeagueSpartan', Bahnschrift, sans-serif;
+    font-weight: normal;
+    margin: 0;
+    background: var(--darker-grey);
+}
+
+.short-text-field {
+    font-family: 'LeagueSpartan', Bahnschrift, sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+    color: #DDD;
+    height: 40px;
+    padding-inline: 10px;
+    border-radius: 16px;
+    border: none;
+    outline: var(--lighter-grey) solid 1px;
+    background: var(--dark-grey);
+}
+
+.short-text-field:focus {
+    outline: solid 2px var(--green-accent);
+}

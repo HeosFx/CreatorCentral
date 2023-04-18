@@ -1,4 +1,6 @@
 @font-face {
     font-family: 'LeagueSpartan'; /*a name to be used later*/
-    src: url('../font/League_Spartan/LeagueSpartan-VariableFont_wght.ttf'); /*URL to font*/
+    /*URL to font*/
+    src: url('../font/League_Spartan/LeagueSpartan-VariableFont_wght.ttf') format("woff2 supports variations"),
+    url('../font/League_Spartan/LeagueSpartan-VariableFont_wght.ttf') format("woff2-variations");
 }
