@@ -1,13 +1,17 @@
 .errorMessage {
-    font-weight: normal;
     color: red;
+    font-weight: normal;
     font-size: 18px;
+    margin-top: 7px;
+    margin-bottom: 0;
 }
 
 .successMessage {
     color: var(--green-accent);
-    font-size: 18px;
     font-weight: normal;
+    font-size: 18px;
+    margin-top: 7px;
+    margin-bottom: 0;
 }
 
 
@@ -19,7 +23,7 @@ body{
 }
 
 form {
-    border: solid 1px #545660;
+    border: solid 1px var(--light-grey);
     border-radius: 20px;
     background: var(--grey);
     width: 500px;
@@ -27,33 +31,15 @@ form {
     padding: 60px;
 }
 
+#name, #password, #username, #confirm {
+    margin-top: 10px;
+    width: 480px;
+}
+
 label {
     display: block;
     font-weight: normal;
-}
-
-input[type="password"], input[type="text"] {
-    margin-top: 10px;
-    color: white;
-    height: 40px;
-    width: 480px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    border-radius: 15px;
-    outline: var(--lighter-grey) solid 1px;
-    border: none;
-    background: var(--dark-grey);
-    font-size: 20px;
-    padding-inline: 10px;
-}
-
-input:focus{
-    outline: solid 2px var(--green-accent);
-}
-
-label {
-    margin-top: 15px;
+    margin-top: 18px;
     font-size: 20px;
 }
 

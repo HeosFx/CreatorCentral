@@ -10,64 +10,27 @@
     --darker-grey: #16181c;
 }
 
-nav {
-    background-color: var(--grey);
-    border-bottom: var(--light-grey) solid 1px;
-    display: flex;
-    flex-flow: row;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 55px;
-}
-
-#logo, #navbar-buttons {
-    padding-inline: 20px;
-}
-
 body {
+    color: white;
+    font-family: 'LeagueSpartan', Bahnschrift, sans-serif;
+    font-weight: normal;
     margin: 0;
     background: var(--darker-grey);
 }
 
-li {
-    margin: 0;
-}
-
-html {
-    color: white;
+.short-text-field {
     font-family: 'LeagueSpartan', Bahnschrift, sans-serif;
-}
-
-.search-bar {
-    padding-left: 10px;
+    font-size: 20px;
+    font-weight: lighter;
+    color: #DDD;
     height: 40px;
-    width: 35%;
-    display: flex;
-    align-items: center;
-    border-radius: 15px;
-    border: var(--lighter-grey) solid 1px;
+    padding-inline: 10px;
+    border-radius: 16px;
+    border: none;
+    outline: var(--lighter-grey) solid 1px;
     background: var(--dark-grey);
 }
 
-.search-bar input {
-    width: 100%;
-    height: 40px;
-    font-size: 16px;
-    padding: 3px 10px;
-    color: white;
-    border: none;
-    outline: none;
-    background: none;
-}
-
-.search-bar:focus {
-    border: var(--green-accent) solid 1px;
-}
-
-.search-bar img {
-    height: 30px;
-    width: auto;
+.short-text-field:focus {
+    outline: solid 2px var(--green-accent);
 }

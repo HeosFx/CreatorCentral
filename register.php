@@ -6,7 +6,7 @@ $newAccountStatus = CheckNewAccountForm();
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Register | Creator Central</title>
@@ -17,8 +17,8 @@ $newAccountStatus = CheckNewAccountForm();
 
 <body>
 <form action="#" method="post">
-
     <h1>S'inscrire sur Creator Central</h1>
+
     <?php
     if ($newAccountStatus["Successful"]) {
         echo '<p class="successMessage">Nouveau compte créé avec succès!</p>';
@@ -26,25 +26,20 @@ $newAccountStatus = CheckNewAccountForm();
         echo '<p class="errorMessage">' . $newAccountStatus["ErrorMessage"] . '</p>';
     }
     ?>
-    <div>
-        <label for="username">Identifiant :</label>
-        <input autofocus type="text" id="username" name="username">
-        <p id="username_hint" class="errorMessage"></p>
-    </div>
-    <div>
-        <label for="password">Mot de passe :</label>
-        <input type="password" id="password" name="password">
-        <p id="password_hint" class="errorMessage"></p>
 
-    </div>
-    <div>
-        <label for="confirm">Confirmer le mot de passe :</label>
-        <input type="password" id="confirm" name="confirm">
-        <p id="confirm_hint" class="errorMessage"></p>
-    </div>
-    <div class="formbutton">
-        <button type="submit">Créer un compte</button>
-    </div>
+    <label for="username">Identifiant :</label>
+    <input autofocus type="text" id="username" name="username" class="short-text-field">
+    <p id="username_hint" class="errorMessage"></p>
+
+    <label for="password">Mot de passe :</label>
+    <input type="password" id="password" name="password" class="short-text-field">
+    <p id="password_hint" class="errorMessage"></p>
+
+    <label for="confirm">Confirmer le mot de passe :</label>
+    <input type="password" id="confirm" name="confirm" class="short-text-field">
+    <p id="confirm_hint" class="errorMessage"></p>
+
+    <button type="submit">Créer un compte</button>
 
     <?php include './javascript/registerFormHinting.php' ?>
 </form>
