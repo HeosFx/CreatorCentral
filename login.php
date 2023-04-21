@@ -35,6 +35,8 @@ $loginStatus = CheckLoginForm();
     <input type="password" id="password" name="password" class="short-text-field">
 
     <button type="submit">Se Connecter</button>
+
+    <p class="new">Nouveau sur Creator Central ? <a href="./register.php">Créer un compte</a></>
 </form>
 </body>
 </html>

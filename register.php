@@ -41,7 +41,7 @@ $newAccountStatus = CheckNewAccountForm();
 
     <button type="submit">Créer un compte</button>
 
-    <?php include './javascript/registerFormHinting.php' ?>
+    <script src="./javascript/registerFormHinting.js"></script>
 </form>
 </body>
 </html>
