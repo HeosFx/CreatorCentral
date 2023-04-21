@@ -155,21 +155,3 @@ input:checked + label + .slide {
     width: 100%;
     height: auto;
 }
-
-
-
-
-
-.test-button {
-    position: absolute;
-    top: 50%;
-    left: 25%;
-    padding: 0;
-    margin: 0;
-    z-index: 100;
-}
-
-.test-button:hover {
-    background-color: #2EE985;
-    z-index: 100;
-}
