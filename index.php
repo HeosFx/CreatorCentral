@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./styles/slider_background.css">
     <link rel="stylesheet" href="./styles/data_slider.css">
     <link rel="stylesheet" href="./styles/popup.css">
+    <link rel="stylesheet" href="./styles/search_bar.css">
 
     <script type="text/javascript" src="scripts/data_slider.js"></script>
     <script type="text/javascript" src="scripts/popup.js"></script>
@@ -90,7 +91,12 @@
                     Where Creativity <br> Meets Community
                 </p>
             </div>
-            <button class="data-button" role="button"><span class="button-data-text">Search</span></button>
+            <div class="header-search-bar">
+                <img src="./img/magnifying_glass.png" alt="Magnifying glass">
+                <label>
+                    <input class="search-bar" type="search" placeholder="Rechercher sur Creator Central">
+                </label>
+            </div>
         </div>
 
 <!--        Slide 3 : Creator central presentation and button 'More Info'-->
@@ -106,7 +112,7 @@
             </div>
             <button class="data-button" role="button" onclick="openPopup()" id="more-info-button"><span class="button-data-text">More Info</span></button>
             <div class="popup" id="popup">
-                <img src="img/404-tick.png">
+                <img src="img/404-tick.png" alt="tick">
                 <h2>Welcome to Creator Central - The Ultimate Social Network for DIY Enthusiasts</h2>
                 <p>
                     Welcome to <b>Creator Central</b>, the ultimate social network for DIY enthusiasts of all levels! Our platform is designed to help you connect with like-minded individuals, share your DIY projects, get advice, and find inspiration for your next big project. Here's what you can expect when you join our community:
@@ -142,7 +148,7 @@
                     like-minded individuals, Creator Central is the perfect place to do it.
                 </p>
             </div>
-            <button class="data-button" role="button" id="slide4-button"><span class="button-data-text">Sign in</span></button>
+            <button class="data-button" role="button" id="slide4-button" onclick="location.href='register.php'"><span class="button-data-text">Sign in</span></button>
         </div>
     </div>
 </body>
