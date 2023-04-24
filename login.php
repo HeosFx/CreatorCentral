@@ -1,8 +1,5 @@
 <?php
-include("./pageparts/databaseFunctions.php");
-ConnectDatabase();
-$loginStatus = CheckLoginForm();
-
+include("initialize.php");
 ?>
 
 <!DOCTYPE html>
@@ -20,11 +17,11 @@ $loginStatus = CheckLoginForm();
     <h1>Connexion à Creator Central</h1>
 
     <?php
-    if ($loginStatus["Successful"]) {
+    if ($SQLconn->loginStatus->loginSuccessful) {
         echo '<p class="successMessage">Connexion réussie</p>';
         header('Location: feed.php');
-    } elseif (isset($loginStatus["ErrorMessage"])) {
-        echo '<h3 class="errorMessage">' . $loginStatus['ErrorMessage'] . '</h3>';
+    } elseif (isset($SQLconn->loginStatus->errorText)) {
+        echo '<h3 class="errorMessage">' . $SQLconn->loginStatus->errorText . '</h3>';
     }
     ?>
 
@@ -42,6 +39,6 @@ $loginStatus = CheckLoginForm();
 </html>
 
 <?php
-DisconnectDatabase();
+$SQLconn->DisconnectDatabase();
 ?>
 

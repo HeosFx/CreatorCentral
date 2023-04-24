@@ -1,6 +1,5 @@
 <?php
-include("./pageparts/databaseFunctions.php");
-ConnectDatabase();
+include("./initialize.php");
 
 ?>
 
@@ -18,13 +17,21 @@ ConnectDatabase();
 <br>
 <br>
 
-<?php include './pageparts/header.php' ?>
+<?php include './pageparts/header.php';
 
+if (isset($_GET["newaccount"])){
+    //TODO popup lors de la création d'un compte
+    echo "
+    <script>
+        alert('Compte créé avec succès. Bienvenue sur Creator Central !');
+    </script>";
+}
+?>
 
 </body>
 </html>
 
 <?php
-DisconnectDatabase();
+$SQLconn->DisconnectDatabase();
 ?>
 

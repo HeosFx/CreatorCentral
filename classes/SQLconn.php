@@ -14,7 +14,7 @@ class SQLconn {
         $servername = "localhost";
         $username = "root";
         $password = "";
-        $dbname = "td_exemple_final";
+        $dbname = "creatorcentral";
         
         $this->conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -40,11 +40,14 @@ class SQLconn {
     //--------------------------------------------------------------------------------
     function Process_NewAccount_Form(){
 
+        $creationSuccessful = false;
+        $error = NULL;
+
         // If the account creation form has been completed
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Checks if there is already an entry for this username in the database
-            $username = SecurizeString_ForSQL($_POST["username"]);
+            $username = $this->SecurizeString_ForSQL($_POST["username"]);
             $result = $this->conn->query("SELECT * FROM users WHERE username='$username'");
 
             if ($result->num_rows > 0) {
@@ -78,30 +81,6 @@ class SQLconn {
             'ErrorMessage' => $error];
     }
 
-    // Fonction pour obtenir le nom d'un propriétaire de blog + savoir si c'est "moi"
-	// "moi" est relatif au nom du "mec connecté", qui est fourni en paramètre
-    //--------------------------------------------------------------------------------
-    /*function GetBlogOwnerFromID($ID, $connectedGuyName){
-        $query = "SELECT `logname` from `login` WHERE `ID` = $ID";
-        $result = $this->conn->query($query);
-
-        if ($result->num_rows > 0 ){
-			
-			//There should only be one result
-            $row = $result->fetch_assoc();
-			
-			//We compare the
-            if ($row["logname"] == $connectedGuyName){
-                return array($connectedGuyName, true);
-            }
-            else {
-                return array($row["logname"], false);
-            }
-        }
-        else {
-            return array("Invalid", false);
-        }
-    }*/
 
     // Fonction pour générer une page de posts en HTML à partir de paramètres
     //--------------------------------------------------------------------------------

@@ -1,10 +1,10 @@
 <?php
-include("./pageparts/databaseFunctions.php");
-ConnectDatabase();
-if (!CheckSession()){
+include("initialize.php");
+
+if (!$SQLconn->loginStatus->loginSuccessful){
     header("Location: ./login.php");
 }
-$newPostStatus = CheckPostForm();
+
 
 
 ?>
@@ -53,6 +53,6 @@ $newPostStatus = CheckPostForm();
 </html>
 
 <?php
-DisconnectDatabase();
+$SQLconn->DisconnectDatabase();
 ?>
 

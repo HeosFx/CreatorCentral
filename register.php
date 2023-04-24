@@ -1,12 +1,13 @@
 <?php
-include("./pageparts/databaseFunctions.php");
-ConnectDatabase();
-$newAccountStatus = CheckNewAccountForm();
+include("initialize.php");
+$newAccountStatus = $SQLconn->Process_NewAccount_Form();
 
-if (CheckSession()){
+if ($newAccountStatus["Successful"]){
+    header("Location: ./feed.php?newaccount=true");
+}
+elseif ($SQLconn->loginStatus->loginSuccessful){
     header("Location: ./feed.php");
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -24,10 +25,7 @@ if (CheckSession()){
     <h1>S'inscrire sur Creator Central</h1>
 
     <?php
-    if ($newAccountStatus["Successful"]) {
-        echo '<p class="successMessage">Nouveau compte créé avec succès!</p>';
-        header("Location: ./feed.php");
-    } elseif (isset($newAccountStatus["ErrorMessage"])) {
+    if (!$newAccountStatus["Successful"] && isset($newAccountStatus["ErrorMessage"])) {
         echo '<p class="errorMessage">' . $newAccountStatus["ErrorMessage"] . '</p>';
     }
     ?>
@@ -52,5 +50,5 @@ if (CheckSession()){
 </html>
 
 <?php
-DisconnectDatabase();
+$SQLconn->DisconnectDatabase();
 ?> 

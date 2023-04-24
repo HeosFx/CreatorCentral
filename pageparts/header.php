@@ -1,15 +1,14 @@
 <?php
+$user_connected = false;
+
 // Checks if the user has pressed the logout button
 if ($_SERVER["REQUEST_METHOD"] && isset($_POST["logout"])) {
-    session_unset();
-    session_destroy();
-}
-
-if (CheckSession()) {
-    $user_connected = true;
-    $username = $_SESSION["username"];
+    $SQLconn->loginStatus->Logout();
 } else {
-    $user_connected = false;
+    if ($SQLconn->loginStatus->loginSuccessful) {
+        $user_connected = true;
+        $username = $SQLconn->loginStatus->userName;
+    }
 }
 ?>
 
@@ -40,9 +39,9 @@ if (CheckSession()) {
                 </form>
         
             </div>';
-            } else {
-                echo '<a class="header-button" href="./login.php">Login</a>';
-        }    ?>
+        } else {
+            echo '<a class="header-button" href="./login.php">Login</a>';
+        } ?>
     </div>
 </div>
 

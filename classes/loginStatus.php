@@ -3,16 +3,49 @@
 class LoginStatus{
 
     public $loginSuccessful = false;
-    public $loginAttempted = false;
     public $errorText = "";
-    public $userID = 0;
+
     public $userName = "";
 
     // Constructeur de la classe
     //-------------------------------------------------------------------------------------------------------
     function __construct(&$SQLconn) {
-        
+
+        $this->errorText = NULL;
         $this->loginSuccessful = false;
+        $this->userName = NULL;
+        session_start();
+
+        // Check the PHP session to see if the user is already logged in
+        if ($this->CheckSession()) {
+            $this->loginSuccessful = true;
+            $this->userName = $_SESSION["username"];
+        } // If the login form has been completed
+        elseif (isset($_POST["name"]) && isset($_POST["password"])) {
+            // Default error message
+            $this->errorText = 'Identifiant ou mot de passe invalide(s)';
+
+            $username = $SQLconn->SecurizeString_ForSQL($_POST["name"]);
+            $password = $_POST["password"];
+
+            // Get the password (hashed) associated with the username
+            $query = "SELECT password FROM users WHERE username = '$username'";
+            $result = $SQLconn->conn->query($query);
+
+            // If the username is in the database, verifies the password
+            if ($result->num_rows == 1) {
+                $hash = $result->fetch_assoc()["password"];
+                if (password_verify($password, $hash)) {
+
+                    $_SESSION["username"] = $username;
+                    $this->userName = $username;
+                    $this->errorText = NULL;
+                    $this->loginSuccessful = true;
+                }
+            }
+        }
+
+        /*$this->loginSuccessful = false;
 
         //Données reçues via formulaire?
         if(isset($_POST["name"]) && isset($_POST["password"])){
@@ -45,27 +78,23 @@ class LoginStatus{
             else {
                 $this->errorText = "Ce couple login/mot de passe n'existe pas. Créez un Compte";
             }
-        }
-    }// fin de Méthode
-
-    // Méthode pour stocker un login réussi dans un cookie
-    //-------------------------------------------------------------------------------------------------------
-    function CreateLoginCookie($username, $encryptedPasswd){
-
-        setcookie("name", $username, time() + 24*3600 );
-        setcookie("password", $encryptedPasswd, time() + 24*3600);
+        }*/
 
     }// fin de Méthode
 
-    // Méthode pour se délogger. Détruit le cookie.
+    // Méthode pour se déconnecter.
     //-------------------------------------------------------------------------------------------------------
     function Logout(){
-
-        setcookie("name", NULL, -1 );
-        setcookie("password", NULL, -1);
+        session_unset();
+        session_destroy();
 
     }// fin de Méthode
 
-} // Fin de classe
+    // Checks if the user is connected
+    function CheckSession()
+    {
+        return isset($_SESSION["username"]);
+    }
 
+} // Fin de classe
 ?>
