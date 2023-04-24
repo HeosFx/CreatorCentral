@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 24 avr. 2023 à 14:51
--- Version du serveur : 10.4.28-MariaDB
--- Version de PHP : 8.2.4
+-- Généré le : lun. 24 avr. 2023 à 15:12
+-- Version du serveur : 10.4.27-MariaDB
+-- Version de PHP : 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `creatorcentral`
 --
+CREATE DATABASE IF NOT EXISTS `creatorcentral` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `creatorcentral`;
 
 -- --------------------------------------------------------
 
