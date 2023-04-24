@@ -40,3 +40,11 @@ function showData4() {
     document.getElementById('slide4-container').classList.add('show');
     last_slide = 4;
 }
+
+/*
+Clear search bar
+*/
+
+function clearSearchBar() {
+    document.getElementById("search-input").value = "";
+}
