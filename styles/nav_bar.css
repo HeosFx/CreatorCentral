@@ -1,8 +1,9 @@
 /* Logo */
 
 .logo {
-    height: 50px;
+    height: 80px;
     width: auto;
+    transform: translateY(-10%);
 }
 
 /* Buttons in the navigation bar */
@@ -17,7 +18,7 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 1000;
 }
 
 .big-button-container {
@@ -87,7 +88,7 @@
 
 .connexion-button:after {
     border-radius: 60px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
 }
 
 .connexion-button span {
@@ -100,6 +101,7 @@
 #sign-in-button {
     border-radius: 60px;
     background-color: #2EE985;
+    color: whitesmoke;
 }
 
 #sign-in-button:before {
@@ -108,4 +110,8 @@
     top: 0;
     left: 0;
     height: 10px;
+}
+
+#log-in-button {
+    color: #595959;
 }
