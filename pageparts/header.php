@@ -14,16 +14,16 @@ if ($_SERVER["REQUEST_METHOD"] && isset($_POST["logout"])) {
 
 <div id="header">
     <div class="header-logo">
-        <a href="./index.php">
+        <a href="./feed.php">
             <img id="logo" src="./img/creator_central.png" alt="Creator Central logo">
         </a>
     </div>
 
 
-    <div class="header-search-bar">
+    <form class="header-search-bar" action="feed.php" method="get">
         <img src="./img/magnifying_glass.png">
-        <input class="search-bar" type="search" placeholder="Rechercher sur Creator Central">
-    </div>
+        <input class="search-bar" type="search" placeholder="Rechercher sur Creator Central" name="search">
+    </form>
 
 
     <div class="header-navbar">
