@@ -17,7 +17,7 @@
     <script type="text/javascript" src="scripts/popup.js"></script>
 </head>
 
-<body>
+<body onload="clearSearchBar()">
 
     <!--Navigation bar-->
 
@@ -91,11 +91,12 @@
                     Where Creativity <br> Meets Community
                 </p>
             </div>
-            <div class="header-search-bar">
-                <img src="./img/magnifying_glass.png" alt="Magnifying glass">
-                <label>
-                    <input class="search-bar" type="search" placeholder="Rechercher sur Creator Central">
-                </label>
+<!--            Search bar-->
+            <div class="search-container">
+                <form action="feed.php" class="search-bar" method="get">
+                    <input type="text" placeholder="Search..." name="search" id="search-input">
+                    <button type="submit"><img src="img/magnifying_glass.png" alt="glass"></button>
+                </form>
             </div>
         </div>
 
