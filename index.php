@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="./styles/nav_bar.css">
     <link rel="stylesheet" href="./styles/slider_background.css">
     <link rel="stylesheet" href="./styles/data_slider.css">
+    <link rel="stylesheet" href="./styles/popup.css">
 
     <script type="text/javascript" src="scripts/data_slider.js"></script>
+    <script type="text/javascript" src="scripts/popup.js"></script>
 </head>
 
 <body>
@@ -102,7 +104,27 @@
                     share your passion for DIY.
                 </p>
             </div>
-            <button class="data-button" role="button" id="more-info-button"><span class="button-data-text">More Info</span></button>
+            <button class="data-button" role="button" onclick="openPopup()" id="more-info-button"><span class="button-data-text">More Info</span></button>
+            <div class="popup" id="popup">
+                <img src="img/404-tick.png">
+                <h2>Welcome to Creator Central - The Ultimate Social Network for DIY Enthusiasts</h2>
+                <p>
+                    Welcome to <b>Creator Central</b>, the ultimate social network for DIY enthusiasts of all levels! Our platform is designed to help you connect with like-minded individuals, share your DIY projects, get advice, and find inspiration for your next big project. Here's what you can expect when you join our community:
+                    <br><br>
+                    <b>Connect with others</b>: Creator Central is the perfect place to meet other DIY enthusiasts who share your passion. Whether you're looking to collaborate on a project, share ideas, or just chat with someone who "gets it," you'll find plenty of like-minded individuals here.
+                    <br><br>
+                    <b>Share your projects</b>: Are you proud of a recent DIY project you completed? Share it on Creator Central! Our platform makes it easy to upload photos and videos, add a description, and tag your project with relevant keywords. Not only will you get feedback on your work, but you'll also inspire others to take on similar projects.
+                    <br><br>
+                    <b>Ask for advice</b>: Stuck on a project? Not sure how to proceed? Don't worry - Creator Central is here to help. Ask for advice from our community of DIY experts, and get the guidance you need to complete your project successfully.
+                    <br><br>
+                    <b>Find inspiration</b>: Looking for your next big project? Browse through our library of DIY projects, and find inspiration for your next creation. Whether you're interested in woodworking, home decor, or something else entirely, you'll find plenty of ideas to spark your creativity.
+                    <br><br>
+                    <b>Learn new skills</b>: Creator Central is more than just a social network - it's also a place to learn new skills. Take advantage of our community resources, tutorials, and workshops, and take your DIY skills to the next level.
+                    <br><br>
+                    <b>Creator Central</b> was founded by <b>Maxime Blanchard and Flavian Theurel</b>, two passionate DIYers who wanted to create a space where DIY enthusiasts of all levels could connect, share their projects, ask for advice, and find inspiration for their next creation. With their combined expertise in woodworking, home renovation, and crafting, Maxime and Flavian have created a platform that is welcoming, inclusive, and supportive of all DIYers. Join their community today, and start sharing your passion for DIY with others!
+                </p>
+                <button type="button" onclick="closePopup()">Close</button>
+            </div>
         </div>
 
 <!--        Slide 4 : Text to enroll people and button 'Sign in'-->
