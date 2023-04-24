@@ -14,22 +14,26 @@
     <script type="text/javascript" src="scripts/data_slider.js"></script>
 </head>
 
-<body onload="">
+<body>
 
+    <!--Navigation bar-->
 
     <div class="nav-container">
         <div class="logo-container">
             <img class="logo" src="img/creator_central.png" alt="Creator Central Logo">
         </div>
+        <!--Button in the top right corner-->
         <div class="big-button-container">
-            <button class="connexion-button" id="log-in-button" role="button"><span class="button-text">Log in</span></button>
-            <button class="connexion-button" id="sign-in-button" role="button"><span class="button-text">Sign in</span></button>
+            <button class="connexion-button" id="log-in-button" role="button" onclick="location.href='login.php'"><span class="button-text">Log in</span></button>
+            <button class="connexion-button" id="sign-in-button" role="button"><span class="button-text" onclick="location.href='register.php'">Sign in</span></button>
         </div>
     </div>
 
+    <!--Background slider-->
 
     <div class="main-container">
 
+<!--        Slide 1 : Explore-->
         <input type="radio" onclick="showData1()" id="trigger1" name="slider" checked autofocus>
         <label for="trigger1"><span class="sr-only">Slide 1 of 4. Explore</span></label>
         <div class="slide bg1">
@@ -37,6 +41,7 @@
             <img class="wave-img-bot" src="img/Waves/wave1-bot.png" alt="Wave n°1 Bottom">
         </div>
 
+<!--        Slide 2 : Search-->
         <input type="radio" onclick="showData2()" id="trigger2" name="slider">
         <label for="trigger2"><span class="sr-only">Slide 2 of 4. Search</span></label>
         <div class="slide bg2">
@@ -44,6 +49,7 @@
             <img class="wave-img-bot" src="img/Waves/wave2-bot.png" alt="Wave n°2 Bottom">
         </div>
 
+<!--        Slide 3 : Information / More info-->
         <input type="radio" onclick="showData3()" id="trigger3" name="slider">
         <label for="trigger3"><span class="sr-only">Slide 3 of 4. Information</span></label>
         <div class="slide bg3">
@@ -51,6 +57,7 @@
             <img class="wave-img-bot" src="img/Waves/wave3-bot.png" alt="Wave n°3 Bottom">
         </div>
 
+<!--        Slide 4 : Sign-in-->
         <input type="radio" onclick="showData4()" id="trigger4" name="slider">
         <label for="trigger4"><span class="sr-only">Slide 4 of 4. Sign-in</span></label>
         <div class="slide bg4">
@@ -60,23 +67,31 @@
 
     </div>
 
+    <!--Layer composed of the text, the buttons,etc. on the foreground-->
+
     <div class="data-container">
+
+<!--        Slide 1 : Button 'Explore' and text-->
         <div class="data-slide show" id="slide1-container">
             <div class="data-text-div">
                 <p class="data-text">
                     Welcome on <br> Creator Central
                 </p>
             </div>
-            <button class="data-button" role="button"><span class="button-data-text">Explore</span></button>
+            <button class="data-button" role="button" onclick="location.href='feed.php'"><span class="button-data-text">Explore</span></button>
         </div>
+
+<!--        Slide 2 : Search bar and text-->
         <div class="data-slide" id="slide2-container">
             <div class="data-text-div">
                 <p class="data-text data-text-big">
                     Where Creativity <br> Meets Community
                 </p>
             </div>
-            <button class="data-button" role="button"><span class="button-data-text">Sign in2</span></button>
+            <button class="data-button" role="button"><span class="button-data-text">Search</span></button>
         </div>
+
+<!--        Slide 3 : Creator central presentation and button 'More Info'-->
         <div class="data-slide" id="slide3-container">
             <div class="data-text-div">
                 <p class="data-text data-text-small">
@@ -89,6 +104,8 @@
             </div>
             <button class="data-button" role="button" id="more-info-button"><span class="button-data-text">More Info</span></button>
         </div>
+
+<!--        Slide 4 : Text to enroll people and button 'Sign in'-->
         <div class="data-slide" id="slide4-container">
             <div class="data-text-div" id="slide4-text">
                 <p class="data-text data-text-small">
