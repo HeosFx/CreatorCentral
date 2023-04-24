@@ -14,10 +14,9 @@ if (CheckSession()) {
 ?>
 
 <div id="header">
-    <!-- TODO: remplacer le logo-->
     <div class="header-logo">
         <a href="./index.php">
-            <img id="logo" src="./img/computer.jpg">
+            <img id="logo" src="./img/creator_central.png" alt="Creator Central logo">
         </a>
     </div>
 
