@@ -3,7 +3,7 @@ include("./pageparts/databaseFunctions.php");
 ConnectDatabase();
 $newAccountStatus = CheckNewAccountForm();
 
-if (!CheckSession()){
+if (CheckSession()){
     header("Location: ./feed.php");
 }
 
