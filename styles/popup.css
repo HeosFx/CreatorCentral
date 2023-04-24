@@ -3,7 +3,7 @@
 .popup {
     font-family: 'LeagueSpartan', serif;
     width: 1000px;
-    height: 700px;
+    height: 80vh;
     background: white;
     border-radius: 6px;
     position: absolute;
@@ -38,13 +38,18 @@
 /*Text*/
 
 .popup h2 {
-    font-size: 38px;
+    font-size: 30px;
     font-weight: 500;
     margin: 30px 0 10px;
 }
 
 .popup p {
+    height: 65%;
+    padding-inline: 20px;
     text-align: justify;
+    overflow-y: scroll;
+    scrollbar-color: dimgrey whitesmoke;
+    scrollbar-width: thin;
 }
 
 /*Close button*/

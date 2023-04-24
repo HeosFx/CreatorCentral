@@ -25,11 +25,12 @@
     order: 2;
     display: flex;
     background: whitesmoke;
-    width: 230px;
+    width: 330px;
     height: auto;
     border-radius: 60px;
     padding: 0;
     margin: 0;
+    margin-right: 15px;
 }
 
 .connexion-button {
@@ -77,7 +78,7 @@
     top: 5px;
     transform: translateZ(0);
     transition: clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1), -webkit-clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1);
-    width: 90%;
+    width: 95%;
 }
 
 .connexion-button:hover:before {

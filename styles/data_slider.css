@@ -106,7 +106,7 @@
 
 .button-data-text {
     font-family: 'LeagueSpartan', serif;
-    font-size: 68px;
+    font-size: 50px;
     font-weight: bolder;
     position: absolute;
     padding: 20px;
@@ -133,19 +133,17 @@
 }
 
 .data-text-big {
-    width: 70vh;
+    width: 70vw;
     height: 30vh;
 }
 
 .data-text-small {
-    width: 115vh;
-    font-size: 35px;
+    width: 70vw;
+    font-size: 4vh;
     font-weight: normal;
     line-height: 40px;
 }
-
-
-/* Specifications for the last slide */
+/* More info button */
 
 #more-info-button {
     left: 10%;
@@ -156,6 +154,12 @@
     width: 350px;
 }
 
+.more-info-text{
+    font-size: 45px;
+}
+
+/* Specifications for the last slide */
+
 #slide4-text {
     top: 20%;
 }
@@ -163,3 +167,4 @@
 #slide4-button {
     bottom: 15%;
 }
+
