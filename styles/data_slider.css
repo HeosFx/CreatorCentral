@@ -93,7 +93,6 @@
 
 .data-button {
     position: absolute;
-    bottom: 25%;
     left: 15%;
     width: 275px;
     height: 100px;
@@ -143,28 +142,33 @@
     font-weight: normal;
     line-height: 40px;
 }
-/* More info button */
-
-#more-info-button {
-    left: 10%;
-    width: 350px;
-}
-
-#more-info-button:before {
-    width: 350px;
-}
-
 .more-info-text{
     font-size: 45px;
 }
 
-/* Specifications for the last slide */
+/* Specifications for each slide */
 
 #slide4-text {
     top: 20%;
 }
 
 #slide4-button {
+    bottom: 8%;
+}
+
+#slide1-button{
+    bottom: 20%;
+}
+
+#slide3-button {
+    left: 10%;
+    width: 350px;
     bottom: 15%;
 }
+
+#slide3-button:before {
+    width: 350px;
+}
+
+
 

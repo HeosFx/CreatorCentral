@@ -84,7 +84,7 @@
                 Bienvenue sur <br> Creator Central
             </p>
         </div>
-        <button class="data-button" role="button" onclick="location.href='feed.php'"><span class="button-data-text">Explorer</span>
+        <button class="data-button" role="button" onclick="location.href='feed.php'" id="slide1-button"><span class="button-data-text">Explorer</span>
         </button>
     </div>
 
@@ -115,7 +115,7 @@
                 connecter avec d'autres personnes qui partagent votre passion pour le bricolage.
             </p>
         </div>
-        <button class="data-button" role="button" onclick="openPopup()" id="more-info-button"><span
+        <button class="data-button" role="button" onclick="openPopup()" id="slide3-button"><span
                     class="button-data-text more-info-text">En savoir plus</span></button>
         <div class="popup" id="popup">
             <img src="img/404-tick.png" alt="tick">
