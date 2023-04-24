@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] && isset($_POST["logout"])) {
     session_destroy();
 }
 
-if (isset($_SESSION["username"])) {
+if (CheckSession()) {
     $user_connected = true;
     $username = $_SESSION["username"];
 } else {

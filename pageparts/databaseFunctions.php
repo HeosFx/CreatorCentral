@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 // Function to open connection to database
 //--------------------------------------------------------------------------------
@@ -41,10 +42,9 @@ function CheckLoginForm()
     $error = NULL;
     $loginSuccessful = false;
 
-    session_start();
 
     // Check the PHP session to see if the user is already logged in
-    if (isset($_SESSION["username"])) {
+    if (CheckSession()) {
         $loginSuccessful = true;
     } // If the login form has been completed
     elseif ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -95,16 +95,13 @@ function CheckNewAccountForm()
 
         if ($result->num_rows > 0) {
             $error = "Echec: l'identifiant est déjà utilisé";
-        }
-        // Checks if the username is at least 4 characters long
+        } // Checks if the username is at least 4 characters long
         elseif (strlen($username) < 4) {
             $error = "Echec: le nom utilisateur doit comporter au moins 4 caractères";
-        }
-        // Checks if the two password match
+        } // Checks if the two password match
         elseif ($_POST["password"] != $_POST["confirm"]) {
             $error = "Echec: les mots de passe ne correspondent pas";
-        }
-        // Checks if the password is at least 8 characters long
+        } // Checks if the password is at least 8 characters long
         elseif (strlen($_POST["password"]) < 8) {
             $error = "Echec: le mot de passe doit comporter au moins 8 caractères";
         } else {
@@ -113,7 +110,6 @@ function CheckNewAccountForm()
 
             $query = "INSERT INTO `users` VALUES ('$username', '$hash')";
             $result = $conn->query($query);
-            session_start();
             $_SESSION["username"] = $username;
 
             if (mysqli_affected_rows($conn) == 0) {
@@ -129,12 +125,57 @@ function CheckNewAccountForm()
 }
 
 
+function CheckPostForm()
+{
+    global $conn;
+
+    $creationSuccessful = false;
+    $error = NULL;
+
+
+    // If the post creation form has been completed
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && CheckSession()) {
+        echo '<br><br><br><br>bonjour';
+        $title = SecurizeString_ForSQL($_POST['title']);
+        $desc = SecurizeString_ForSQL($_POST['description']);
+
+
+        // Checks if the user entered a title
+        if (strlen($title) < 1) {
+            $error = "Echec: Le titre ne peut pas être vide";
+        } elseif (!isset($_FILES["image-file"])) { // Checks the image file is valid
+            $error = "Echec: Le post doit contenir une image"; // Checks the file extension
+        } else {
+            // Generates a unique id for the post
+            $postId = md5($_SESSION["username"] . microtime());
+            $extension = pathinfo($_FILES["image-file"]["tmp_name"], PATHINFO_EXTENSION);
+            $targetImage = "../uploads/" . $postId . $extension;
+            move_uploaded_file($_FILES["image-file"]["tmp_name"], $targetImage);
+
+        }
+
+    }
+
+    return ['Successful' => $creationSuccessful,
+        'ErrorMessage' => $error];
+}
+
+
+function CheckSession()
+{
+    return isset($_SESSION["username"]);
+}
+
 // Function to close connection to database
 //--------------------------------------------------------------------------------
+
 function DisconnectDatabase()
 {
     global $conn;
     $conn->close();
 }
-
 ?>
+
+
+
+

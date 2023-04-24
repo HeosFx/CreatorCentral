@@ -3,6 +3,10 @@ include("./pageparts/databaseFunctions.php");
 ConnectDatabase();
 $newAccountStatus = CheckNewAccountForm();
 
+if (!CheckSession()){
+    header("Location: ./feed.php");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +26,7 @@ $newAccountStatus = CheckNewAccountForm();
     <?php
     if ($newAccountStatus["Successful"]) {
         echo '<p class="successMessage">Nouveau compte créé avec succès!</p>';
+        header("Location: ./feed.php");
     } elseif (isset($newAccountStatus["ErrorMessage"])) {
         echo '<p class="errorMessage">' . $newAccountStatus["ErrorMessage"] . '</p>';
     }
@@ -39,7 +44,7 @@ $newAccountStatus = CheckNewAccountForm();
     <input type="password" id="confirm" name="confirm" class="short-text-field">
     <p id="confirm_hint" class="errorMessage"></p>
 
-    <button type="submit">Créer un compte</button>
+    <button type="submit" class="wide-button">Créer un compte</button>
 
     <script src="./javascript/registerFormHinting.js"></script>
 </form>

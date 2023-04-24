@@ -1,7 +1,6 @@
 <?php
 include("./pageparts/databaseFunctions.php");
 ConnectDatabase();
-$loginStatus = CheckLoginForm();
 
 ?>
 
