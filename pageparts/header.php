@@ -2,7 +2,7 @@
 $user_connected = false;
 
 // Checks if the user has pressed the logout button
-if ($_SERVER["REQUEST_METHOD"] && isset($_POST["logout"])) {
+if ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST["logout"])) {
     $SQLconn->loginStatus->Logout();
 } else {
     if ($SQLconn->loginStatus->loginSuccessful) {
@@ -29,7 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] && isset($_POST["logout"])) {
     <div class="header-navbar">
         <?php if ($user_connected) {
             echo '
-            <a href="./newpost.php" class="header-button" onclick="">Poster</a>
+            <form action="./editpost.php" method="post">
+                <input type="submit" class="header-button" value="Poster" name="new">
+            </form>
             <div class="dropdown">
                 <button class="dropbtn header-button">' . $username . '</button>
         

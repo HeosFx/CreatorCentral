@@ -58,6 +58,7 @@ body {
 
 .main-container{
     margin-top: var(--header-height);
+    margin-bottom: 30px;
     padding: 10px 0;
     width: min(90%, 800px);
     margin-inline: auto;

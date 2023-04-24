@@ -14,6 +14,7 @@
     width: calc(100vw - 40px);
     padding: 5px 20px;
     height: 45px;
+    margin-bottom: var(--header-height);
 }
 
 .header-logo {
