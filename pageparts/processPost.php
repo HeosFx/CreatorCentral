@@ -40,7 +40,7 @@ if (isset($_POST["action"])) {
         //TODO : effacer le fichier si le post avait une image
     }
 
-    //header("Location:./profile.php?username=" . $SQLconn->loginStatus->username);
+    header("Location: ../feed.php");
 
 }
 

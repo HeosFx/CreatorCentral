@@ -37,10 +37,14 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST["logout"])) {
             <div class="dropdown">
                 <button class="dropbtn header-button">' . $username . '</button>
         
-                <form action="feed.php" method="post" class="dropdown-content" id="myDropdown">
-                    <input type="submit" name="profile" value="Mon profil">
-                    <input type="submit" name="logout" value="Se déconnecter">
-                </form>
+                <div class="dropdown-content">
+                    <form action="profile.php" method="post">
+                        <input type="submit" name="profile" value="Mon profil">
+                    </form>
+                    <form action="feed.php" method="post">
+                        <input type="submit" name="logout" value="Se déconnecter">
+                    </form>
+                </div>
         
             </div>';
         } else {

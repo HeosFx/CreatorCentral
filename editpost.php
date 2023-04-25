@@ -62,7 +62,6 @@ if (isset($_POST["new"])) {
 
                 <h1>Edition du post</h1>
                 <hr>
-                <!-- Pour un form avec fichier, "enctype" DOIT être spécifié comme ce qui suit -->
                 <form enctype="multipart/form-data" action="./pageparts/processPost.php" method="POST">
 
                     <input type="hidden" name="action" value="edit">
@@ -84,15 +83,13 @@ if (isset($_POST["new"])) {
                     <button type="submit" class="wide-button" id="post-button">Modifier le post</button>
                 </form>
 
-                <form action="./processPost.php" onsubmit="return confirm('Etes vous sur de vouloir effacer?')"
+                <form action="./pageparts/processPost.php"
+                      onsubmit="return confirm('Etes vous sur de vouloir supprimer ce post?')"
                       method="POST">
 
-                        <input type="hidden" name="action" value="delete">
-                        <input type="hidden" name="postID" value="<?php echo $data["postId"]; ?>">
-
-
-                        <button type="submit" class="wide-button red-bg">Supprimer le post</button>
-
+                    <input type="hidden" name="action" value="delete">
+                    <input type="hidden" name="postID" value="<?php echo $data["postId"]; ?>">
+                    <button type="submit" class="wide-button red-bg">Supprimer le post</button>
                 </form>
             </div>
 
