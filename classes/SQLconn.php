@@ -145,13 +145,13 @@ class SQLconn
 //                }
 //                else {
                 echo '
-                    <div class="post-username">par ' . $row["username"] . '</div>
+                    <div class="post-username"><p>par ' . $row["username"] . '</p></div>
                     ';
 //                }
 
                 echo '
-                    <div class="post-title"><p>•' . $row["title"] . '</p></div>
-                    <div class="post-date"><p>' . date("d/m/y à h:i:s", $timestamp) . '</p></div>
+                    <div class="post-title"><a>' . $row["title"] . '</a></div>
+                    <div class="post-date"><p>' . date("d/m/y à h:i", $timestamp) . '</p></div>
                     ';
 
                 //If an image is linked to the post

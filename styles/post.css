@@ -59,13 +59,17 @@
     grid-area: 2 / 1 / span 1 / span 2;
     margin: 0;
     justify-self: center;
-    border-radius: 15px;
+
     width: 90%;
     height: 95%;
     align-self: end;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.post-image img{
+    border-radius: 15px;
 }
 
 .post-image img {
