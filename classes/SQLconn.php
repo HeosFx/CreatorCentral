@@ -176,7 +176,7 @@ class SQLconn
                 // Check if the post has already been liked by the user
                 $query_like = "SELECT * FROM `likes` WHERE (upper(`postId`) LIKE upper('$formatted_post')) AND (upper(`username`) LIKE upper('$formatted_user'))";
                 $result_like = $this->conn->query($query_like);
-                
+
                 if (mysqli_num_rows($result_like) == 0) {
                     echo '
                         <div class="post-likes"><button class="like-button" id="' . $row["postId"] . '">Like</button></div>
