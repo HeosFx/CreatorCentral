@@ -165,12 +165,29 @@ class SQLconn
                         <div class="post-image"><img src="' . $location . ' " alt="' . $location . '"></div>
                         ';
                 }
-
                 echo '
-                        <div class="post-text"><p>' . $row["content"] . '</p></div>
-                        <div class="post-likes"><button class="like-button" id="'.$row["postId"].'">Like</button></div>
+                    <div class="post-text"><p>' . $row["content"] . '</p></div>
+                    ';
+
+                // Format the variables
+                $formatted_post = htmlspecialchars($row["postId"]);
+                $formatted_user = htmlspecialchars($this->loginStatus->userName);
+
+                // Check if the post has already been liked by the user
+                $query_like = "SELECT * FROM `likes` WHERE (upper(`postId`) LIKE upper('$formatted_post')) AND (upper(`username`) LIKE upper('$formatted_user'))";
+                $result_like = $this->conn->query($query_like);
+                
+                if (mysqli_num_rows($result_like) == 0) {
+                    echo '
+                        <div class="post-likes"><button class="like-button" id="' . $row["postId"] . '">Like</button></div>
                     </div>
                     ';
+                } else {
+                    echo '
+                        <div class="post-likes"><button class="like-button like-button-on" id="' . $row["postId"] . '">Like</button></div>
+                    </div>
+                    ';
+                }
             }
         } else {
             echo '
