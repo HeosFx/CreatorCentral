@@ -67,6 +67,8 @@
 
 .post-image img {
     display: block;
+    height: auto;
+    width: auto;
     max-height: 270px;
     max-width: 358px;
     margin-left: auto;

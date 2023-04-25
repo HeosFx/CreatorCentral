@@ -169,9 +169,9 @@ class SQLconn
                         $newHeight = $size[1]*$ratio;
                         echo '<div class="post-image"><img src="'.$location.'"width="'.$goalsize.'px" height ="'.$newHeight.'px" alt="post_image"></div>';*/
 
-                    // The image is resized to be the biggest possible
+                    // The image is resized to be the biggest possible while preserving its aspect ratio by the css
                     echo '
-                        <div class="post-image"><img src="' . $location . ' "height ="100% "alt="' . $location . '"></div>
+                        <div class="post-image"><img src="' . $location . ' "alt="' . $location . '"></div>
                         ';
 //                            }
                 }
