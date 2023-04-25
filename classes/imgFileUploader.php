@@ -22,7 +22,7 @@ class ImgFileUploader{
                 $this->errorText = "Fichier trop grand! Respectez la limite de 5Mo.";
                 return false;
             }
-            elseif($_FILES['imageFile']['type'] == "image/jpeg" || $_FILES['imageFile']['type'] == "image/png"){
+            elseif($_FILES['imageFile']['type'] == "image/jpeg" || $_FILES['imageFile']['type'] == "image/png" || $_FILES['imageFile']['type'] == "image/gif"){
                 return true;
             }
             else {
