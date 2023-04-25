@@ -1,13 +1,11 @@
 <?php
 include "initialize.php";
 
-if (isset($_GET["user"])) {
-    $user = $_GET["user"];
-} else if ($SQLconn->loginStatus->loginSuccessful) {
-    $user = $SQLconn->loginStatus->userName;
-} else {
-    $user = NULL;
+if (!$SQLconn->loginStatus->loginSuccessful) {
+    header("Location: ./login.php");
 }
+
+$user = $SQLconn->loginStatus->userName;
 ?>
 
 <!DOCTYPE html>
@@ -24,27 +22,17 @@ if (isset($_GET["user"])) {
 <body>
 <?php include "./pageparts/header.php" ?>
 
-<div class="main-container">
-    <?php
-    if ($user == NULL) {
-        echo "<h1>Ce compte n'existe pas</h1>";
-    } else {
-        if ($SQLconn->loginStatus->loginSuccessful) {
-            if ($user == $SQLconn->loginStatus->userName) {
-                echo "<h1>Mon profil</h1><hr>";
-            } else {
-                echo "<h1>Profil de '.$user'</h1><hr>";
-            }
-        } else {
-            echo "<h1>Profil de '.$user'</h1><hr>";
-        }
-
-        echo '<div class="post-container full-width">';
-        $SQLconn->GenerateHTML_forPostsPage(0);
-        echo "</div>";
-    }
-    ?>
-
+<div class="main-container width-1000">
+    <h1>Mon profil</h1>
+    <hr>
+    <div class="post-container">
+        <?php
+        $SQLconn->GenerateHTML_forPostsPage(true);
+        ?>
+    </div>
 </div>
+
+
+
 
 </body>

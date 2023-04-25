@@ -1,4 +1,3 @@
-
 <?php
 require_once(__ROOT__ . "/Classes/loginStatus.php");
 
@@ -111,18 +110,18 @@ class SQLconn
             $query = "SELECT * FROM `posts` WHERE (upper(`title`) LIKE upper('%$formatted_search%')) OR (upper(`content`) LIKE upper('%$formatted_search%')) OR (upper(`username`) LIKE upper('%$formatted_search%')) ORDER BY `date` DESC LIMIT 20";
             $result = $this->conn->query($query);
         } else {
-            $query = "SELECT * FROM `posts` ORDER BY `date` DESC";
+            if ($isMyBlog) {
+                $formatted_user = htmlspecialchars($this->loginStatus->userName);
+                $query = "SELECT * FROM `posts` WHERE `username` LIKE '$formatted_user' ORDER BY `date` DESC";
+            } else {
+                $query = "SELECT * FROM `posts` ORDER BY `date` DESC";
+            }
+
             $result = $this->conn->query($query);
         }
 
         // If there exist at least 1 post in the database
         if (mysqli_num_rows($result) != 0) {
-
-            if ($isMyBlog) {
-                ?>
-
-                <?php
-            }
 
             // Display the posts
             while ($row = $result->fetch_assoc()) {
@@ -134,19 +133,8 @@ class SQLconn
                     <div class="post">
                     ';
 
-//                if ($isMyBlog){
-//
-//                    echo '
-//                    <div class="main-container">
-//                        <form action="editPost.php" method="GET">
-//                            <input type="hidden" name="postID" value="'.$row["ID_post"].'">
-//                            <button type="submit">Modifier/effacer</button>
-//                        </form>
-//                    </div>';
-//                }
-//                else {
                 echo '
-                    <div class="post-username" id="'.$row["username"].'"><p>par ' . $row["username"] . '</p></div>
+                    <div class="post-username" id="' . $row["username"] . '"><p>par ' . $row["username"] . '</p></div>
                     ';
 //                }
 
@@ -169,24 +157,38 @@ class SQLconn
                     <div class="post-text"><p>' . $row["content"] . '</p></div>
                     ';
 
-                // Format the variables
-                $formatted_post = htmlspecialchars($row["postId"]);
-                $formatted_user = htmlspecialchars($this->loginStatus->userName);
-
-                // Check if the post has already been liked by the user
-                $query_like = "SELECT * FROM `likes` WHERE (upper(`postId`) LIKE upper('$formatted_post')) AND (upper(`username`) LIKE upper('$formatted_user'))";
-                $result_like = $this->conn->query($query_like);
-
-                if (mysqli_num_rows($result_like) == 0) {
+                // if the post belongs to the user : show edit button
+                if ($row["username"] == $this->loginStatus->userName) {
                     echo '
+                    <div class="post-likes">
+                        <form method="get" action="editpost.php">
+                            <input type="hidden" name="postID" value="' . $row["postId"] . '">
+                            <input type="submit" value="Modifier" class="like-button">
+                        </form>
+                    </div>
+                    </div>';
+
+                // else, show the like button
+                } else {
+                    // Format the variables
+                    $formatted_post = htmlspecialchars($row["postId"]);
+                    $formatted_user = htmlspecialchars($this->loginStatus->userName);
+
+                    // Check if the post has already been liked by the user
+                    $query_like = "SELECT * FROM `likes` WHERE (upper(`postId`) LIKE upper('$formatted_post')) AND (upper(`username`) LIKE upper('$formatted_user'))";
+                    $result_like = $this->conn->query($query_like);
+
+                    if (mysqli_num_rows($result_like) == 0) {
+                        echo '
                         <div class="post-likes"><button class="like-button" id="' . $row["postId"] . '">Like</button></div>
                     </div>
                     ';
-                } else {
-                    echo '
+                    } else {
+                        echo '
                         <div class="post-likes"><button class="like-button like-button-on" id="' . $row["postId"] . '">Like</button></div>
                     </div>
                     ';
+                    }
                 }
             }
         } else {

@@ -58,41 +58,43 @@ if (isset($_POST["new"])) {
             $data = $result->fetch_assoc();
             ?>
 
-            <h1>Edition du post</h1>
-            <hr>
-            <!-- Pour un form avec fichier, "enctype" DOIT être spécifié comme ce qui suit -->
-            <form enctype="multipart/form-data" action="./processPost.php" method="POST">
+            <div class="main-container">
 
-                <input type="hidden" name="action" value="edit">
-                <input type="hidden" name="postID" value="<?php echo $data["ID_post"]; ?>">
-                <label for="title">Titre :</label>
-                <input autofocus type="text" name="title" class="short-text-field"
-                       value="<?php echo $data["title"]; ?>">
-                <p class="errorMessage" id="title_hint"></p>
+                <h1>Edition du post</h1>
+                <hr>
+                <!-- Pour un form avec fichier, "enctype" DOIT être spécifié comme ce qui suit -->
+                <form enctype="multipart/form-data" action="./pageparts/processPost.php" method="POST">
+
+                    <input type="hidden" name="action" value="edit">
+                    <input type="hidden" name="postID" value="<?php echo $data["postId"]; ?>">
+                    <label for="title">Titre :</label>
+                    <input autofocus type="text" name="title" class="short-text-field"
+                           value="<?php echo $data["title"]; ?>">
+                    <p class="errorMessage" id="title_hint"></p>
 
 
-                <label for="content">Message :</label>
-                <textarea name="content" class="long-text-field"><?php echo $data["content"]; ?></textarea>
-                <p class="errorMessage" id="content_hint"></p>
+                    <label for="content">Message :</label>
+                    <textarea name="content" class="long-text-field"><?php echo $data["content"]; ?></textarea>
+                    <p class="errorMessage" id="content_hint"></p>
 
-                <input type="hidden" name="MAX_FILE_SIZE" value="5242880"/>
-                <label for="imageFile">Ajouter une image (facultatif) :</label>
-                <input name="imageFile" type="file"/>
+                    <input type="hidden" name="MAX_FILE_SIZE" value="5242880"/>
+                    <label for="imageFile">Ajouter une image (facultatif) :</label>
+                    <input name="imageFile" type="file"/>
 
-                <button type="submit" class="wide-button" id="post-button">Modifier le post</button>
-            </form>
+                    <button type="submit" class="wide-button" id="post-button">Modifier le post</button>
+                </form>
 
-            <form action="./processPost.php" onsubmit="return confirm('Etes vous sur de vouloir effacer?')"
-                  method="POST">
-                <div class="formbutton">Cliquez le bouton ci-dessous pour effacer le post</div>
-                <div>
-                    <input type="hidden" name="action" value="delete">
-                    <input type="hidden" name="postID" value="<?php echo $data["ID_post"]; ?>">
-                </div>
-                <div class="formbutton">
-                    <button type="submit">Supprimer le post</button>
-                </div>
-            </form>
+                <form action="./processPost.php" onsubmit="return confirm('Etes vous sur de vouloir effacer?')"
+                      method="POST">
+
+                        <input type="hidden" name="action" value="delete">
+                        <input type="hidden" name="postID" value="<?php echo $data["postId"]; ?>">
+
+
+                        <button type="submit" class="wide-button red-bg">Supprimer le post</button>
+
+                </form>
+            </div>
 
             <?php
         } else {

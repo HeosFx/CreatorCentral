@@ -129,6 +129,15 @@ input[type="file"]{
     margin-bottom: 0;
 }
 
-.full-width{
-    width: 100%;
+
+.width-1000{
+    width: min(1000px, 90%);
+}
+
+.red-bg{
+    background-color: red;
+}
+
+.red-bg:enabled:hover{
+    background-color: #c21010;
 }

@@ -20,7 +20,7 @@ include("./initialize.php");
 
 <body onload="init()">
 <br>
-<br>
+
 
 <?php include './pageparts/header.php';
 

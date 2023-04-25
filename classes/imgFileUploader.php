@@ -77,8 +77,8 @@ class ImgFileUploader{
         $result = $this->SQLconn->conn->query($query);
 
         while( $row = $result->fetch_assoc() ){
-            if ( file_exists(($row["image_url"]) ) ){
-                unlink($row["image_url"]);
+            if ( file_exists(($row["picturePath"]) ) ){
+                unlink($row["picturePath"]);
             }
         }
 
