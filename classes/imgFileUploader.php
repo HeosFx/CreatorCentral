@@ -89,7 +89,9 @@ class ImgFileUploader{
     // Method to update the img URL in the database using SQLconn
     //----------------------------------------------------------
     function UpdateImageInPost($postID, $path_filename_ext){
-        $query = "UPDATE `posts` SET `picturePath`='$path_filename_ext' WHERE `postId`= $postID";
+        // Parse the path so that the image can be loaded
+        $img_path = addslashes("/CreatorCentral".str_replace(__ROOT__,"",$path_filename_ext));
+        $query = "UPDATE `posts` SET `picturePath`='$img_path' WHERE `postId`= $postID";
         $this->SQLconn->conn->query($query);
     }
 }

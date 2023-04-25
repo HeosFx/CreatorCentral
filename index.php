@@ -163,15 +163,8 @@
     <div class="data-slide" id="slide4-container">
         <div class="data-text-div" id="slide4-text">
             <p class="data-text data-text-small">
-                On Creator Central, you can create a profile, share photos and videos of
-                your projects, and connect with other members. You can also browse the
-                site for inspiration and ideas, and search for projects by category,
-                difficulty level, or materials used. Members can offer feedback and advice
-                on your projects, and you can do the same for others.<br><br>
-                Join Creator Central today and become part of a vibrant community of
-                DIY enthusiasts who share your passion for creativity and innovation.
-                Whether you're looking to tackle a big project or just want to connect with
-                like-minded individuals, Creator Central is the perfect place to do it.
+                Sur Creator Central, vous pouvez créer un profil, partager des photos et des vidéos de vos projets et vous connecter avec d'autres membres. Vous pouvez également parcourir le site pour trouver de l'inspiration et des idées, et rechercher des projets par catégorie, niveau de difficulté ou matériaux utilisés. Les membres peuvent offrir des commentaires et des conseils sur vos projets, et vous pouvez en faire de même pour les autres.<br><br>
+                Rejoignez Creator Central dès aujourd'hui et faites partie d'une communauté dynamique d'enthousiastes du DIY qui partagent votre passion pour la créativité et l'innovation. Que vous cherchiez à entreprendre un grand projet ou simplement à vous connecter avec des personnes ayant des intérêts similaires, Creator Central est l'endroit idéal pour le faire.
             </p>
         </div>
         <button class="data-button" role="button" id="slide4-button" onclick="location.href='register.php'"><span
