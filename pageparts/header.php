@@ -4,6 +4,8 @@ $user_connected = false;
 // Checks if the user has pressed the logout button
 if ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST["logout"])) {
     $SQLconn->loginStatus->Logout();
+    // refresh the feed in order to reset the user variable
+    echo "<meta http-equiv='refresh' content='0'>";
 } else {
     if ($SQLconn->loginStatus->loginSuccessful) {
         $user_connected = true;
