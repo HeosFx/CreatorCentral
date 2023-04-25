@@ -11,6 +11,7 @@ include("./initialize.php");
     <link rel="stylesheet" href="styles/font.css">
     <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/post.css">
 </head>
 
 <body>
@@ -27,6 +28,11 @@ if (isset($_GET["newaccount"])){
     </script>";
 }
 ?>
+<div class="post-container">
+<?php
+    $SQLconn->GenerateHTML_forPostsPage(0);
+?>
+</div>
 
 </body>
 </html>

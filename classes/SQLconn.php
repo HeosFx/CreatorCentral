@@ -84,82 +84,77 @@ class SQLconn {
 
     // Fonction pour générer une page de posts en HTML à partir de paramètres
     //--------------------------------------------------------------------------------
-    function GenerateHTML_forPostsPage($blogID, $ownerName, $isMyBlog) {
+    function GenerateHTML_forPostsPage($isMyBlog) {
 
-        $query = "SELECT * FROM `post` WHERE `owner_login` = ".$blogID." ORDER BY `date_lastedit` DESC LIMIT 10";
+        $query = "SELECT * FROM `posts` ORDER BY `date` DESC LIMIT 20";
         $result = $this->conn->query($query);
         if( mysqli_num_rows($result) != 0 ){
     
             if ($isMyBlog){
             ?>
-    
-            <form action="editPost.php" method="POST">
-                <input type="hidden" name="newPost" value="1">
-                <button type="submit">Ajouter un nouveau post!</button>
-            </form>
-    
-            <?php    
+
+            <?php
             }
     
             while( $row = $result->fetch_assoc() ){
     
-                $timestamp = strtotime($row["date_lastedit"]);
+                $timestamp = strtotime($row["date"]);
                 echo '
-                <div class="blogPost">
-                    <div class="postTitle">';
+                
+                    <div class="post">';
     
-                if ($isMyBlog){
+//                if ($isMyBlog){
+//
+//                    echo '
+//                    <div class="main-container">
+//                        <form action="editPost.php" method="GET">
+//                            <input type="hidden" name="postID" value="'.$row["ID_post"].'">
+//                            <button type="submit">Modifier/effacer</button>
+//                        </form>
+//                    </div>';
+//                }
+//                else {
+                        echo '
+                        <div class="post-username">par '.$row["username"].'</div>
+                        ';
+//                }
     
-                    echo '
-                    <div class="postModify">
-                        <form action="editPost.php" method="GET">
-                            <input type="hidden" name="postID" value="'.$row["ID_post"].'">
-                            <button type="submit">Modifier/effacer</button>
-                        </form>
-                    </div>';
-                }
-                else {
-                    echo '
-                    <div class="postAuthor">par '.$ownerName.'</div>
-                    ';
-                }
+                        echo '<div class="post-title"><p>•'.$row["title"].'</p></div>
+                        <div class="post-date"><p>'.date("d/m/y à h:i:s", $timestamp ).'</p></div>
+                        ';
     
-                echo '<h3>•'.$row["title"].'</h3>
-                <p>dernière modification le '.date("d/m/y à h:i:s", $timestamp ).'</p>
-                </div>
-                ';
-    
-                //On regarde si il y a une image, si oui, on l'insère
-                if (!is_null($row["image_url"])){
+                        //If an image is linked to the post
+                        if (!is_null($row["picturePath"]) && $row["picturePath"] != ""){
 
-                    //je choisis de redimentionner mon image pour 200px de large
-                    $size = getimagesize($row["image_url"]);
-                    if ($size){
-                        $goalsize = 200;
+                            $location = $row["picturePath"];
 
-                        $ratio = $goalsize/$size[0]; //on calcule le redimentionnement
-                        $newHeight = $size[1]*$ratio;
-                        echo '<img class ="postImg" src="'.$row["image_url"].'"width="'.$goalsize.'px" height ="'.$newHeight.'px">';
-                    } 
-                }
+                            //je choisis de redimentionner mon image pour 200px de large
+                            /*$size = getimagesize("C:\xampp\htdocs\CreatorCentral\uploads\computer.jpg");
+                            if ($size){
+                                $goalsize = 200;
+
+                                $ratio = $goalsize/$size[0]; //on calcule le redimentionnement
+                                $newHeight = $size[1]*$ratio;
+                                echo '<div class="post-image"><img src="'.$location.'"width="'.$goalsize.'px" height ="'.$newHeight.'px" alt="post_image"></div>';*/
+                            echo '<div class="post-image"><img src="'.$location.' "height ="100% "alt="'.$location.'"></div>';
+//                            }
+                        }
     
-                echo'
-                <p class="postContent">'.$row["content"].'</p>
-                <div style="clear:both; height:0px; margin:0; padding:0"></div>
-                </div>
+                        echo'
+                        <div class="post-text"><p>'.$row["content"].'</p></div>
+                        <div class="post-likes"><p>Like</p></div>
+                    </div>
+               
                 ';
             }
         }
         else {
             echo '
-            <p>Il n\'y a pas de post dans ce blog.</p>';
+            <div><p>Il n\'y a pas de post dans ce blog.</p></div>';
     
             if ($isMyBlog){
             ?>
-                <form action="editPost.php" method="POST">
-                    <input type="hidden" name="newPost" value="1">
-                    <button type="submit">Ajouter un premier post!</button>
-                </form>
+
             <?php
             }
             

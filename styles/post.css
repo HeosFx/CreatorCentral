@@ -1,0 +1,133 @@
+
+/* div that contains the posts */
+.post-container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 75px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 400px);
+    grid-gap: 20px 20px;
+    justify-content: center;
+}
+
+
+.post {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 6fr 1fr 2fr 1fr;
+    background-color: #242834;
+    width: auto;
+    height: 530px;
+    border-radius: 20px;
+    border: solid 1px #545660;
+}
+
+
+.post-username {
+    grid-area: 1 / 1 / span 1 / span 1;
+    border-bottom: 1px solid #545660;
+    align-self: center;
+    padding-left: 10%;
+}
+
+.post-date{
+    grid-area: 1 / 2 / span 1 / span 1;
+    border-bottom: 1px solid #545660;
+    padding-right: 10%;
+    text-align: right;
+    color: lightgrey;
+}
+
+.post-title {
+    grid-area: 3 / 1 / span 1 / span 2;
+    align-self: center;
+    padding-inline: 5%;
+    padding-block: 0;
+}
+
+.post-title p {
+    vertical-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0;
+    font-size: 25px;
+}
+
+.post-image {
+    background-color: chocolate;
+    grid-area: 2 / 1 / span 1 / span 2;
+    margin: 0;
+    justify-self: center;
+    border-radius: 15px;
+    width: 90%;
+    height: 95%;
+    align-self: end;
+}
+
+.post-image img {
+    display: block;
+    max-height: 270px;
+    max-width: 358px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.post-text {
+    grid-area: 4 / 1 / span 1 / span 2;
+    margin: 0;
+    border-bottom: 1px solid #545660;
+    padding-inline: 5%;
+}
+
+.post-text p {
+    margin: 0;
+    font-size: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+}
+
+.post-likes {
+    grid-area: 5 / 1 / span 1 / span 2;
+    margin-inline: 10%;
+    justify-self: center;
+}
+
+
+.post-likes:hover, .post-share:hover {
+    cursor: pointer;
+    text-shadow: rgba(0, 250, 154, 0.73) 1px 0 10px;
+    color: #39f5ac;
+}
+
+/* example html code
+   the order of the divs inside the post doesn't matter
+<div class="post-container">
+    <div class="post">
+        <div class="post-username"><p>@user1</p></div>
+        <div class="post-title"><p>Je suis le titre qsd qdqs q dqsssqdqsdqsd qds
+            <p></div>
+        <div class="post-image"><p>Test</p></div>
+        <div class="post-text"><p>Je suis le texte bla bla blabla bla bla blabla bla bla blablabla bla blablabla bla
+            qsdljqsjl qsjd qsjl h jqs jqshdjsqkjk qshjkqsjdk djkqjk q qsdksh kqshdjkqshdjk qkjqsjksqjk qsjkqsjkd qsjk
+            qsjkdjkdqjk jqsh jqshdjkqsh djkdjkqsj kqsjkd qjkqdhskdh jk
+            blabla </p></div>
+        <div class="post-likes"><p>Like</p></div>
+        <div class="post-date"><p>26 avril 2023</p></div>
+    </div>
+    <div class="post">
+        <div class="post-username"><p>@user1</p></div>
+        <div class="post-title"><p>Je suis le titre qsd qdqs q dqsssqdqsdqsd qds
+            <p></div>
+        <div class="post-image"><p>Test</p></div>
+        <div class="post-text"><p>Je suis le texte bla bla blabla bla bla blabla bla bla blablabla bla blablabla bla
+            qsdljq
+            blabla </p></div>
+        <div class="post-likes"><p>Like</p></div>
+        <div class="post-date"><p>24 avril 2023</p></div>
+    </div>
+</div>
+*/
