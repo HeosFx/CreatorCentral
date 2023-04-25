@@ -44,7 +44,7 @@ elseif ($SQLconn->loginStatus->loginSuccessful){
 
     <button type="submit" class="wide-button">Créer un compte</button>
 
-    <script src="./javascript/registerFormHinting.js"></script>
+    <script type="text/javascript" src="scripts/registerFormHinting.js"></script>
 </form>
 </body>
 </html>
