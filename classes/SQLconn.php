@@ -1,44 +1,37 @@
-
 <?php
-require_once(__ROOT__."/Classes/loginStatus.php");
+require_once(__ROOT__ . "/Classes/loginStatus.php");
 
-class SQLconn {
+class SQLconn
+{
     public $conn = NULL;
     public $loginStatus = NULL;
 
-    // Fonction qui connecte la BDD
+    // Function that connect the database
     //--------------------------------------------------------------------------------
-    function __construct() {
+    function __construct()
+    {
 
         //Créer connection
         $servername = "localhost";
         $username = "root";
         $password = "";
         $dbname = "creatorcentral";
-        
+
         $this->conn = new mysqli($servername, $username, $password, $dbname);
 
-        if ( $this->conn->connect_error) {
+        if ($this->conn->connect_error) {
             die("Connection failed: " . $this->conn->connect_error);
         }
 
-        // Après connection, créer l'objet loginstatus
+        // After connexion, create the object loginStatus
         $this->loginStatus = new LoginStatus($this);
     }
 
-    //Fonction pour sécuriser les données utilisateur de manière basique
+    //Function that secure basically users data
     //--------------------------------------------------------------------------------
-    function SecurizeString_ForSQL($string) {
-        $string = trim($string);
-        $string = stripcslashes($string);
-        $string = addslashes($string);
-        $string = htmlspecialchars($string);
-        return $string;
-    }
 
-    //Fonction pour traiter un formulaire de création de compte
-    //--------------------------------------------------------------------------------
-    function Process_NewAccount_Form(){
+    function Process_NewAccount_Form()
+    {
 
         $creationSuccessful = false;
         $error = NULL;
@@ -81,28 +74,66 @@ class SQLconn {
             'ErrorMessage' => $error];
     }
 
-
-    // Fonction pour générer une page de posts en HTML à partir de paramètres
+    //Function that process a form (Sign-in)
     //--------------------------------------------------------------------------------
-    function GenerateHTML_forPostsPage($isMyBlog) {
 
-        $query = "SELECT * FROM `posts` ORDER BY `date` DESC LIMIT 20";
-        $result = $this->conn->query($query);
-        if( mysqli_num_rows($result) != 0 ){
-    
-            if ($isMyBlog){
-            ?>
+    function SecurizeString_ForSQL($string)
+    {
+        $string = trim($string);
+        $string = stripcslashes($string);
+        $string = addslashes($string);
+        $string = htmlspecialchars($string);
+        return $string;
+    }
 
-            <?php
+
+    // Function that generate a HTML post page from parameters
+    //--------------------------------------------------------------------------------
+
+    function query($stringQuery)
+    {
+        return $this->conn->query($stringQuery);
+    }
+
+    //Proxy call query on conn.
+
+    function GenerateHTML_forPostsPage($isMyBlog)
+    {
+        // Query on either the whole database or only the elements that corresponds to the research
+        if (!empty($_GET)) {
+            // Get the value sent
+            $searched = $_GET['search'];
+
+            // Change the html characters to their equivalent
+            $formatted_search = htmlspecialchars($searched);
+
+            $query = "SELECT * FROM `posts` WHERE (upper(`title`) LIKE upper('%$formatted_search%')) OR (`content` LIKE '%$formatted_search%') OR (`username` LIKE '%$formatted_search%') ORDER BY `date` DESC LIMIT 20";
+            $result = $this->conn->query($query);
+        }
+        else {
+            $query = "SELECT * FROM `posts` ORDER BY `date` DESC LIMIT 20";
+            $result = $this->conn->query($query);
+        }
+
+        // If there exist at least 1 post in the database
+        if (mysqli_num_rows($result) != 0) {
+
+            if ($isMyBlog) {
+                ?>
+
+                <?php
             }
-    
-            while( $row = $result->fetch_assoc() ){
-    
+
+            // Display the posts
+            while ($row = $result->fetch_assoc()) {
+
+                // Convert the date
                 $timestamp = strtotime($row["date"]);
+
                 echo '
-                
-                    <div class="post">';
-    
+                    <div class="post">
+                    ';
+
 //                if ($isMyBlog){
 //
 //                    echo '
@@ -114,63 +145,64 @@ class SQLconn {
 //                    </div>';
 //                }
 //                else {
-                        echo '
-                        <div class="post-username">par '.$row["username"].'</div>
-                        ';
+                echo '
+                    <div class="post-username">par ' . $row["username"] . '</div>
+                    ';
 //                }
-    
-                        echo '<div class="post-title"><p>•'.$row["title"].'</p></div>
-                        <div class="post-date"><p>'.date("d/m/y à h:i:s", $timestamp ).'</p></div>
+
+                echo '
+                    <div class="post-title"><p>•' . $row["title"] . '</p></div>
+                    <div class="post-date"><p>' . date("d/m/y à h:i:s", $timestamp) . '</p></div>
+                    ';
+
+                //If an image is linked to the post
+                if (!is_null($row["picturePath"]) && $row["picturePath"] != "") {
+
+                    $location = $row["picturePath"];
+
+                    //je choisis de redimentionner mon image pour 200px de large
+                    /*$size = getimagesize("C:\xampp\htdocs\CreatorCentral\uploads\computer.jpg");
+                    if ($size){
+                        $goalsize = 200;
+
+                        $ratio = $goalsize/$size[0]; //on calcule le redimentionnement
+                        $newHeight = $size[1]*$ratio;
+                        echo '<div class="post-image"><img src="'.$location.'"width="'.$goalsize.'px" height ="'.$newHeight.'px" alt="post_image"></div>';*/
+
+                    // The image is resized to be the biggest possible
+                    echo '
+                        <div class="post-image"><img src="' . $location . ' "height ="100% "alt="' . $location . '"></div>
                         ';
-    
-                        //If an image is linked to the post
-                        if (!is_null($row["picturePath"]) && $row["picturePath"] != ""){
-
-                            $location = $row["picturePath"];
-
-                            //je choisis de redimentionner mon image pour 200px de large
-                            /*$size = getimagesize("C:\xampp\htdocs\CreatorCentral\uploads\computer.jpg");
-                            if ($size){
-                                $goalsize = 200;
-
-                                $ratio = $goalsize/$size[0]; //on calcule le redimentionnement
-                                $newHeight = $size[1]*$ratio;
-                                echo '<div class="post-image"><img src="'.$location.'"width="'.$goalsize.'px" height ="'.$newHeight.'px" alt="post_image"></div>';*/
-                            echo '<div class="post-image"><img src="'.$location.' "height ="100% "alt="'.$location.'"></div>';
 //                            }
-                        }
-    
-                        echo'
-                        <div class="post-text"><p>'.$row["content"].'</p></div>
+                }
+
+                echo '
+                        <div class="post-text"><p>' . $row["content"] . '</p></div>
                         <div class="post-likes"><p>Like</p></div>
                     </div>
-               
-                ';
+                    ';
             }
-        }
-        else {
+        } else {
             echo '
-            <div><p>Il n\'y a pas de post dans ce blog.</p></div>';
-    
-            if ($isMyBlog){
-            ?>
+                <div><p>Il n\'y a pas de post dans ce blog.</p></div>
+                ';
 
-            <?php
+            if ($isMyBlog) {
+                ?>
+
+                <?php
             }
-            
-    
+
+
         }
 
     }
-	
-	//Proxy qui appelle query sur conn. Juste là pour le confort.
-	function query($stringQuery){
-		return $this->conn->query($stringQuery);
-	}
 
-    //Fonction pour fermer la connection sur base de données
+    // Function that close database connexion
     //--------------------------------------------------------------------------------
-    function DisconnectDatabase(){
+
+    function DisconnectDatabase()
+    {
         $this->conn->close();
     }
 }
