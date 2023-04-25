@@ -100,7 +100,7 @@ class SQLconn
     function GenerateHTML_forPostsPage($isMyBlog)
     {
         // Query on either the whole database or only the elements that corresponds to the research
-        if (!empty($_GET)) {
+        if (!empty($_GET) && isset($_GET["search"])) {
             // Get the value sent
             $searched = $_GET['search'];
 
@@ -109,8 +109,7 @@ class SQLconn
 
             $query = "SELECT * FROM `posts` WHERE (upper(`title`) LIKE upper('%$formatted_search%')) OR (upper(`content`) LIKE upper('%$formatted_search%')) OR (upper(`username`) LIKE upper('%$formatted_search%')) ORDER BY `date` DESC LIMIT 20";
             $result = $this->conn->query($query);
-        }
-        else {
+        } else {
             $query = "SELECT * FROM `posts` ORDER BY `date` DESC LIMIT 20";
             $result = $this->conn->query($query);
         }
