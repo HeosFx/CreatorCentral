@@ -103,8 +103,10 @@
     color: #39f5ac;
 }
 
-/* example html code
+
+/* example html code 
    the order of the divs inside the post doesn't matter
+
 <div class="post-container">
     <div class="post">
         <div class="post-username"><p>@user1</p></div>
@@ -118,6 +120,9 @@
         <div class="post-likes"><p>Like</p></div>
         <div class="post-date"><p>26 avril 2023</p></div>
     </div>
+
+
+
     <div class="post">
         <div class="post-username"><p>@user1</p></div>
         <div class="post-title"><p>Je suis le titre qsd qdqs q dqsssqdqsdqsd qds
@@ -129,5 +134,7 @@
         <div class="post-likes"><p>Like</p></div>
         <div class="post-date"><p>24 avril 2023</p></div>
     </div>
+
 </div>
+
 */
