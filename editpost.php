@@ -45,7 +45,7 @@ if (isset($_POST["new"])) {
         <button type="submit" class="wide-button" id="post-button" disabled="true">Poster sur Creator Central</button>
     </form>
 
-    <script src="./javascript/postFormHinting.js"></script>
+    <script type="text/javascript" src="scripts/postFormHinting.js"></script>
 
     <?php
     } //Otherwise, we are in "edit" mode. Then, try to get post for ID used as GET parameter

@@ -13,14 +13,16 @@ include("./initialize.php");
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/post.css">
 
-<!--    Get the username of the current logged in user (global scope variable)-->
-    <script>let user = "<?php echo $SQLconn->loginStatus->userName; ?>";</script>
-    <script type="text/javascript" src="scripts/like.js"></script>
+
 </head>
 
 <body onload="init()">
 <br>
 
+
+<!--Get the username of the current logged in user (global scope variable)-->
+<script>let user = "<?php echo $SQLconn->loginStatus->userName; ?>";</script>
+<script type="text/javascript" src="scripts/like.js"></script>
 
 <?php include './pageparts/header.php';
 
@@ -32,6 +34,7 @@ if (isset($_GET["newaccount"])){
     </script>";
 }
 ?>
+
 <div class="post-container">
 <?php
     $SQLconn->GenerateHTML_forPostsPage(0);
