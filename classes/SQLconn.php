@@ -107,7 +107,7 @@ class SQLconn
             // Change the html characters to their equivalent
             $formatted_search = htmlspecialchars($searched);
 
-            $query = "SELECT * FROM `posts` WHERE (upper(`title`) LIKE upper('%$formatted_search%')) OR (`content` LIKE '%$formatted_search%') OR (`username` LIKE '%$formatted_search%') ORDER BY `date` DESC LIMIT 20";
+            $query = "SELECT * FROM `posts` WHERE (upper(`title`) LIKE upper('%$formatted_search%')) OR (upper(`content`) LIKE upper('%$formatted_search%')) OR (upper(`username`) LIKE upper('%$formatted_search%')) ORDER BY `date` DESC LIMIT 20";
             $result = $this->conn->query($query);
         }
         else {
