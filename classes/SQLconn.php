@@ -1,3 +1,4 @@
+
 <?php
 require_once(__ROOT__ . "/Classes/loginStatus.php");
 
@@ -145,7 +146,7 @@ class SQLconn
 //                }
 //                else {
                 echo '
-                    <div class="post-username"><p>par ' . $row["username"] . '</p></div>
+                    <div class="post-username" id="'.$row["username"].'"><p>par ' . $row["username"] . '</p></div>
                     ';
 //                }
 
@@ -159,25 +160,15 @@ class SQLconn
 
                     $location = $row["picturePath"];
 
-                    //je choisis de redimentionner mon image pour 200px de large
-                    /*$size = getimagesize("C:\xampp\htdocs\CreatorCentral\uploads\computer.jpg");
-                    if ($size){
-                        $goalsize = 200;
-
-                        $ratio = $goalsize/$size[0]; //on calcule le redimentionnement
-                        $newHeight = $size[1]*$ratio;
-                        echo '<div class="post-image"><img src="'.$location.'"width="'.$goalsize.'px" height ="'.$newHeight.'px" alt="post_image"></div>';*/
-
                     // The image is resized to be the biggest possible while preserving its aspect ratio by the css
                     echo '
                         <div class="post-image"><img src="' . $location . ' " alt="' . $location . '"></div>
                         ';
-//                            }
                 }
 
                 echo '
                         <div class="post-text"><p>' . $row["content"] . '</p></div>
-                        <div class="post-likes"><p>Like</p></div>
+                        <div class="post-likes"><button class="like-button" id="'.$row["postId"].'">Like</button></div>
                     </div>
                     ';
             }

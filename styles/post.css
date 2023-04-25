@@ -95,7 +95,6 @@
     overflow-y: scroll;
     scrollbar-color: dimgrey whitesmoke;
     scrollbar-width: thin;
-
 }
 
 .post-likes {
@@ -104,11 +103,26 @@
     justify-self: center;
 }
 
+.like-button {
+    background: none;
+    border: none;
+    margin: 0;
+    font-size: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
 
-.post-likes:hover, .post-share:hover {
+
+.like-button:hover, .post-share:hover {
     cursor: pointer;
     text-shadow: rgba(0, 250, 154, 0.73) 1px 0 10px;
     color: #39f5ac;
+}
+
+.like-button-on {
+    text-shadow: rgba(255, 85, 85, 0.73) 1px 0 10px;
+    color: #ff0000;
 }
 
 

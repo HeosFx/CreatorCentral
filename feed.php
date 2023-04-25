@@ -12,9 +12,13 @@ include("./initialize.php");
     <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/post.css">
+
+<!--    Get the username of the current logged in user (global scope variable)-->
+    <script>let user = "<?php echo $SQLconn->loginStatus->userName; ?>";</script>
+    <script type="text/javascript" src="scripts/like.js"></script>
 </head>
 
-<body>
+<body onload="init()">
 <br>
 <br>
 
