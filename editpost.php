@@ -1,4 +1,9 @@
-<?php include("./initialize.php"); ?>
+<?php include("./initialize.php");
+if (!$SQLconn->loginStatus->loginSuccessful) {
+    header('Location: ./login.php');
+}
+?>
+
 
     <!DOCTYPE html>
     <html lang="fr">
@@ -23,27 +28,24 @@ if (isset($_POST["new"])) {
     <hr>
     <!-- Pour un form avec fichier, "enctype" DOIT être spécifié comme ce qui suit -->
     <form enctype="multipart/form-data" action="./pageparts/processPost.php" method="POST">
+        <input type="hidden" name="action" value="new">
+        <label for="title">Titre :</label>
+        <input autofocus type="text" name="title" class="short-text-field" id="title">
+        <p class="errorMessage" id="title_hint">Le post doit contenir un titre</p>
 
-        <div>
-            <input type="hidden" name="action" value="new">
-            <label for="title">Titre :</label>
-            <input autofocus type="text" name="title" class="short-text-field">
-        </div>
-        <div>
-            <label for="content">Message :</label>
-            <textarea name="content" class="long-text-field" placeholder="Decrivez votre création"></textarea>
-        </div>
-        <div>
-            <!-- MAX_FILE_SIZE doit précéder le champ input de type file -->
-            <input type="hidden" name="MAX_FILE_SIZE" value="5242880"/>
-            <label for="imageFile">Fichier d'image :</label>
-            <input name="imageFile" type="file"/>
-        </div>
-        <div><p>(le fichier d'image est facultatif)</p></div>
-        <div class="formbutton">
-            <button type="submit" class="wide-button">Ajouter ce post à mon blog</button>
-        </div>
+
+        <label for="content">Message :</label>
+        <textarea name="content" class="long-text-field" placeholder="Decrivez votre création" id="content"></textarea>
+        <p class="errorMessage" id="content_hint">Le post doit contenir un message</p>
+
+        <input type="hidden" name="MAX_FILE_SIZE" value="5242880"/>
+        <label for="imageFile">Ajouter une image (facultatif) :</label>
+        <input name="imageFile" type="file"/>
+
+        <button type="submit" class="wide-button" id="post-button" disabled="true">Poster sur Creator Central</button>
     </form>
+
+    <script src="./javascript/postFormHinting.js"></script>
 
     <?php
     } //Otherwise, we are in "edit" mode. Then, try to get post for ID used as GET parameter
@@ -57,29 +59,29 @@ if (isset($_POST["new"])) {
             ?>
 
             <h1>Edition du post</h1>
+            <hr>
             <!-- Pour un form avec fichier, "enctype" DOIT être spécifié comme ce qui suit -->
             <form enctype="multipart/form-data" action="./processPost.php" method="POST">
-                <div>
-                    <input type="hidden" name="action" value="edit">
-                    <input type="hidden" name="postID" value="<?php echo $data["ID_post"]; ?>">
-                    <label for="title">Titre :</label>
-                    <input autofocus type="text" name="title" class="short-text-field" value="<?php echo $data["title"]; ?>">
-                </div>
-                <div>
-                    <label for="content">Message :</label>
-                    <textarea name="content" class="long-text-field"><?php echo $data["content"]; ?></textarea>
-                </div>
-                <div>
-                    <!-- MAX_FILE_SIZE doit précéder le champ input de type file -->
-                    <input type="hidden" name="MAX_FILE_SIZE" value="5242880"/>
-                    <label for="imageFile">Fichier d'image :</label>
-                    <input name="imageFile" type="file"/>
-                </div>
-                <div><p>(le fichier d'image est facultatif)</p></div>
-                <div class="formbutton">
-                    <button type="submit" class="wide-button">Modifier le post</button>
-                </div>
+
+                <input type="hidden" name="action" value="edit">
+                <input type="hidden" name="postID" value="<?php echo $data["ID_post"]; ?>">
+                <label for="title">Titre :</label>
+                <input autofocus type="text" name="title" class="short-text-field"
+                       value="<?php echo $data["title"]; ?>">
+                <p class="errorMessage" id="title_hint"></p>
+
+
+                <label for="content">Message :</label>
+                <textarea name="content" class="long-text-field"><?php echo $data["content"]; ?></textarea>
+                <p class="errorMessage" id="content_hint"></p>
+
+                <input type="hidden" name="MAX_FILE_SIZE" value="5242880"/>
+                <label for="imageFile">Ajouter une image (facultatif) :</label>
+                <input name="imageFile" type="file"/>
+
+                <button type="submit" class="wide-button" id="post-button">Modifier le post</button>
             </form>
+
             <form action="./processPost.php" onsubmit="return confirm('Etes vous sur de vouloir effacer?')"
                   method="POST">
                 <div class="formbutton">Cliquez le bouton ci-dessous pour effacer le post</div>

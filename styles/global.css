@@ -85,11 +85,17 @@ label {
     cursor: pointer;
 }
 
-.wide-button:hover {
+.wide-button:disabled {
+    background-color: grey;
+    color: linen;
+}
+
+
+.wide-button:enabled:hover {
     background: var(--green-accent-dark)
 }
 
-.wide-button:active {
+.wide-button:enabled:active {
     background: var(--green-accent-darker)
 }
 
@@ -105,5 +111,21 @@ input[type="file"]{
     padding: 7px 7px;
     border: 2px solid var(--light-grey);
     background: var(--grey);
+}
+
+.errorMessage {
+    color: red;
+    font-weight: normal;
+    font-size: 18px;
+    margin-top: 7px;
+    margin-bottom: 0;
+}
+
+.successMessage {
+    color: var(--green-accent);
+    font-weight: normal;
+    font-size: 18px;
+    margin-top: 7px;
+    margin-bottom: 0;
 }
 
