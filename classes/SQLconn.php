@@ -110,7 +110,7 @@ class SQLconn
             $query = "SELECT * FROM `posts` WHERE (upper(`title`) LIKE upper('%$formatted_search%')) OR (upper(`content`) LIKE upper('%$formatted_search%')) OR (upper(`username`) LIKE upper('%$formatted_search%')) ORDER BY `date` DESC LIMIT 20";
             $result = $this->conn->query($query);
         } else {
-            $query = "SELECT * FROM `posts` ORDER BY `date` DESC LIMIT 20";
+            $query = "SELECT * FROM `posts` ORDER BY `date` DESC";
             $result = $this->conn->query($query);
         }
 
