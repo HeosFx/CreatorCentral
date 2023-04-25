@@ -152,7 +152,7 @@ class SQLconn
 
                 echo '
                     <div class="post-title"><a>' . $row["title"] . '</a></div>
-                    <div class="post-date"><p>' . date("d/m/y à h:i", $timestamp) . '</p></div>
+                    <div class="post-date"><p>' . date("d/m/y à H:i", $timestamp) . '</p></div>
                     ';
 
                 //If an image is linked to the post
