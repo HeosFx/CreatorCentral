@@ -170,7 +170,7 @@ class SQLconn
 
                     // The image is resized to be the biggest possible while preserving its aspect ratio by the css
                     echo '
-                        <div class="post-image"><img src="' . $location . ' "alt="' . $location . '"></div>
+                        <div class="post-image"><img src="' . $location . ' " alt="' . $location . '"></div>
                         ';
 //                            }
                 }
