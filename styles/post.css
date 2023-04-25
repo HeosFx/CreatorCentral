@@ -95,7 +95,6 @@
     overflow-y: scroll;
     scrollbar-color: dimgrey whitesmoke;
     scrollbar-width: thin;
-
 }
 
 .post-likes {
@@ -104,11 +103,30 @@
     justify-self: center;
 }
 
+.like-button {
+    background: rgba(101, 101, 101, 0.73);
+    border: none;
+    border-radius: 50px;
+    height: 4vh;
+    width: 100px;
+    margin: 0;
+    margin-top: 5px;
+    font-size: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
 
-.post-likes:hover, .post-share:hover {
+
+.like-button:hover, .post-share:hover {
     cursor: pointer;
-    text-shadow: rgba(0, 250, 154, 0.73) 1px 0 10px;
-    color: #39f5ac;
+    box-shadow: rgba(148, 148, 148, 0.73) 1px 0 10px;
+    background: rgba(140, 140, 140, 0.73);
+}
+
+.like-button-on {
+    background: var(--green-accent);
+    color: whitesmoke;
 }
 
 

@@ -1,3 +1,4 @@
+
 <?php
 require_once(__ROOT__ . "/Classes/loginStatus.php");
 
@@ -145,13 +146,13 @@ class SQLconn
 //                }
 //                else {
                 echo '
-                    <div class="post-username"><p>par ' . $row["username"] . '</p></div>
+                    <div class="post-username" id="'.$row["username"].'"><p>par ' . $row["username"] . '</p></div>
                     ';
 //                }
 
                 echo '
                     <div class="post-title"><a>' . $row["title"] . '</a></div>
-                    <div class="post-date"><p>' . date("d/m/y à h:i", $timestamp) . '</p></div>
+                    <div class="post-date"><p>' . date("d/m/y à H:i", $timestamp) . '</p></div>
                     ';
 
                 //If an image is linked to the post
@@ -159,27 +160,34 @@ class SQLconn
 
                     $location = $row["picturePath"];
 
-                    //je choisis de redimentionner mon image pour 200px de large
-                    /*$size = getimagesize("C:\xampp\htdocs\CreatorCentral\uploads\computer.jpg");
-                    if ($size){
-                        $goalsize = 200;
-
-                        $ratio = $goalsize/$size[0]; //on calcule le redimentionnement
-                        $newHeight = $size[1]*$ratio;
-                        echo '<div class="post-image"><img src="'.$location.'"width="'.$goalsize.'px" height ="'.$newHeight.'px" alt="post_image"></div>';*/
-
                     // The image is resized to be the biggest possible while preserving its aspect ratio by the css
                     echo '
                         <div class="post-image"><img src="' . $location . ' " alt="' . $location . '"></div>
                         ';
-//                            }
                 }
-
                 echo '
-                        <div class="post-text"><p>' . $row["content"] . '</p></div>
-                        <div class="post-likes"><p>Like</p></div>
+                    <div class="post-text"><p>' . $row["content"] . '</p></div>
+                    ';
+
+                // Format the variables
+                $formatted_post = htmlspecialchars($row["postId"]);
+                $formatted_user = htmlspecialchars($this->loginStatus->userName);
+
+                // Check if the post has already been liked by the user
+                $query_like = "SELECT * FROM `likes` WHERE (upper(`postId`) LIKE upper('$formatted_post')) AND (upper(`username`) LIKE upper('$formatted_user'))";
+                $result_like = $this->conn->query($query_like);
+
+                if (mysqli_num_rows($result_like) == 0) {
+                    echo '
+                        <div class="post-likes"><button class="like-button" id="' . $row["postId"] . '">Like</button></div>
                     </div>
                     ';
+                } else {
+                    echo '
+                        <div class="post-likes"><button class="like-button like-button-on" id="' . $row["postId"] . '">Like</button></div>
+                    </div>
+                    ';
+                }
             }
         } else {
             echo '
