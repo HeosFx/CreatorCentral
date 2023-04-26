@@ -11,7 +11,7 @@ class SQLconn
     function __construct()
     {
 
-        //Créer connection
+        //Create connection
         $servername = "localhost";
         $username = "root";
         $password = "";
@@ -87,7 +87,7 @@ class SQLconn
     }
 
 
-    // Function that generate a HTML post page from parameters
+    // Function that generate an HTML post page from parameters
     //--------------------------------------------------------------------------------
 
     function query($stringQuery)
@@ -97,6 +97,7 @@ class SQLconn
 
     //Proxy call query on conn.
 
+    // Function that generates the Feed composed of posts
     function GenerateHTML_forPostsPage($isMyBlog)
     {
         // Query on either the whole database or only the elements that corresponds to the research
@@ -110,10 +111,11 @@ class SQLconn
             $query = "SELECT * FROM `posts` WHERE (upper(`title`) LIKE upper('%$formatted_search%')) OR (upper(`content`) LIKE upper('%$formatted_search%')) OR (upper(`username`) LIKE upper('%$formatted_search%')) ORDER BY `date` DESC";
             $result = $this->conn->query($query);
         } else {
-            if ($isMyBlog) {
+            // If the user is on its profile
+            if ($isMyBlog) { // Yes
                 $formatted_user = htmlspecialchars($this->loginStatus->userName);
                 $query = "SELECT * FROM `posts` WHERE `username` LIKE '$formatted_user' ORDER BY `date` DESC";
-            } else {
+            } else { // No
                 $query = "SELECT * FROM `posts` ORDER BY `date` DESC";
             }
 
@@ -178,12 +180,13 @@ class SQLconn
                     $query_like = "SELECT * FROM `likes` WHERE (upper(`postId`) LIKE upper('$formatted_post')) AND (upper(`username`) LIKE upper('$formatted_user'))";
                     $result_like = $this->conn->query($query_like);
 
-                    if (mysqli_num_rows($result_like) == 0) {
+                    // If the post is liked (saved in the database)
+                    if (mysqli_num_rows($result_like) == 0) { // No
                         echo '
                         <div class="post-likes"><button class="like-button" id="' . $row["postId"] . '">Like</button></div>
                     </div>
                     ';
-                    } else {
+                    } else { // Yes: Display the activated like button
                         echo '
                         <div class="post-likes"><button class="like-button like-button-on" id="' . $row["postId"] . '">Like</button></div>
                     </div>

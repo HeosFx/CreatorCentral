@@ -26,7 +26,7 @@ async function doQuery(postId, user) {
             button.classList.contains('like-button-on') ? button.classList.remove('like-button-on') : button.classList.add('like-button-on');
         }
     }
-    xhttp.open("GET", "./ajax/like-query.php?user="+user+"&postID="+postId, true); //Le booléen final dit si le chargement est asynchrone ou non
+    xhttp.open("GET", "./ajax/like-query.php?user="+user+"&postID="+postId, true);
     xhttp.send();
 }
 
