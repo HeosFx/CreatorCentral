@@ -9,17 +9,30 @@ l'imitation de Thingiverse.
 
 ## Disclaimer
 
-Pour que le site Creator Central fonctionne optimalement, il est nécessaire que les fichiers sources du site
-se trouvent dans le dossier adéquat de Xampp ou UWamp et que le dossier soit nommé "CreatorCentral".
-On obtiendrait, par exemple, le chemin d'accès "C:\xampp\htdocs\CreatorCentral". (Les fichiers du site se trouveraient 
-dans ce répertoire.)
+Le site Creator Central a été developpé avec **PHP 8.2.0** et **MariaDB 10.4.27**. Le site peut ne pas fonctionner correctement avec des versions antérieures.
 
-De plus, il est nécessaire d'utiliser PHP 8.2.0 ainsi qu'une version de serveur 10.4.27-MariaDB pour s'assurer du bon 
-fonctionnement du site.
+Répertoire d'installation:
+- Avec XAMPP, le site doit être placé dans le répertoire `C:\xampp\htdocs`
+- Avec UwAmp, le site doit être placé dans le répertoire `C:\wamp\www`. **/!\ UwAmp utilisant PHP 7.0.3, le site ne fonctionnera pas entièrement. Nous conseillons d'utiliser XAMPP**
 
-L'identifiant de la base de donnée est : "root". <br>
-Son mot de passe est : "". <br>
-Il est possible de modifier ceci à partir de la ligne 14 du fichier "classes/SQLconn.php".
+
+Identifiants par défaut d'accès à la base de données:
+- Utilisateur : "root"
+- Mot de passe : ""
+
+Il est possible de modifier ces identifants à partir de la ligne 14 du fichier "classes/SQLconn.php".
+
+## Comptes de présentation
+
+Voici une liste de compte présent dans la base de donnée :
+
+Username / Mot de passe
+
+- maxime / maxime12
+- flavian / 12345678
+- user1 / azerty01
+- user2 / azerty02
+- user3 / azerty03
 
 ## Changements et améliorations apportées
 
@@ -49,7 +62,7 @@ En effet, les cookies côté client sont facilement falsifiables.
 - Nous utilisons également Bcrypt et salt pour le hachage des mots de passe. Ceci permet d'accroître 
 la sécurité des utilisateurs.
 
-- Pour empêcher tout envoie d'un formulaire invalide, nous avons implémenté une vérification dynamique des champs des pages d'inscription et de modification des postes ("editpost").
+- Pour empêcher tout envoi d'un formulaire invalide, nous avons implémenté une vérification dynamique des champs des pages d'inscription et de modification des postes ("editpost").
 
 ### Gestion des comptes
 
@@ -76,15 +89,3 @@ la sécurité des utilisateurs.
 ### Esthétique
 
 - Nous avons porté une attention particulière à l'esthétique du site en implémentant des animations et une interface utilisateur plus agréable d'utilisation.
-
-## Comptes de présentation
-
-Voici une liste de compte présent dans la base de donnée :
-
-Username / Mot de passe
-
-- maxime / maxime12
-- flavian / 12345678
-- user1 / azerty01
-- user2 / azerty02
-- user3 / azerty03
