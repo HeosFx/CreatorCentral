@@ -7,7 +7,7 @@ class LoginStatus{
 
     public $userName = "";
 
-    // Constructeur de la classe
+    // Class constructor
     //-------------------------------------------------------------------------------------------------------
     function __construct(&$SQLconn) {
 
@@ -82,13 +82,13 @@ class LoginStatus{
 
     }// fin de Méthode
 
-    // Méthode pour se déconnecter.
+    // Disconnection method.
     //-------------------------------------------------------------------------------------------------------
     function Logout(){
         session_unset();
         session_destroy();
 
-    }// fin de Méthode
+    }
 
     // Checks if the user is connected
     function CheckSession()
@@ -96,5 +96,5 @@ class LoginStatus{
         return isset($_SESSION["username"]);
     }
 
-} // Fin de classe
+}
 ?>

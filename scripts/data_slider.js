@@ -44,7 +44,6 @@ function showData4() {
 /*
 Clear search bar
 */
-
 function clearSearchBar() {
     document.getElementById("search-input").value = "";
 }

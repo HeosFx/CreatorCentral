@@ -11,7 +11,7 @@ class SQLconn
     function __construct()
     {
 
-        //Créer connection
+        //Create connection
         $servername = "localhost";
         $username = "root";
         $password = "";
@@ -87,7 +87,7 @@ class SQLconn
     }
 
 
-    // Function that generate a HTML post page from parameters
+    // Function that generate an HTML post page from parameters
     //--------------------------------------------------------------------------------
 
     function query($stringQuery)
@@ -97,6 +97,7 @@ class SQLconn
 
     //Proxy call query on conn.
 
+    // Function that generates the Feed composed of posts
     function GenerateHTML_forPostsPage($isMyBlog)
     {
         // Set the default timezone
@@ -110,13 +111,14 @@ class SQLconn
             // Change the html characters to their equivalent
             $formatted_search = htmlspecialchars($searched);
 
-            $query = "SELECT * FROM `posts` WHERE (upper(`title`) LIKE upper('%$formatted_search%')) OR (upper(`content`) LIKE upper('%$formatted_search%')) OR (upper(`username`) LIKE upper('%$formatted_search%')) ORDER BY `date` DESC LIMIT 20";
+            $query = "SELECT * FROM `posts` WHERE (upper(`title`) LIKE upper('%$formatted_search%')) OR (upper(`content`) LIKE upper('%$formatted_search%')) OR (upper(`username`) LIKE upper('%$formatted_search%')) ORDER BY `date` DESC";
             $result = $this->conn->query($query);
         } else {
-            if ($isMyBlog) {
+            // If the user is on its profile
+            if ($isMyBlog) { // Yes
                 $formatted_user = htmlspecialchars($this->loginStatus->userName);
                 $query = "SELECT * FROM `posts` WHERE `username` LIKE '$formatted_user' ORDER BY `date` DESC";
-            } else {
+            } else { // No
                 $query = "SELECT * FROM `posts` ORDER BY `date` DESC";
             }
 
@@ -158,60 +160,54 @@ class SQLconn
                 }
                 echo '
                     <div class="post-text"><p>' . $row["content"] . '</p></div>
+                    <div class="post-likes">
                     ';
 
                 // if the post belongs to the user : show edit button
                 if ($row["username"] == $this->loginStatus->userName) {
                     echo '
-                    <div class="post-likes">
+                    
                         <form method="get" action="editpost.php">
                             <input type="hidden" name="postID" value="' . $row["postId"] . '">
                             <input type="submit" value="Modifier" class="like-button">
-                        </form>
-                    </div>
-                    </div>';
+                        </form>';
+                }
 
-                // else, show the like button
+                // Format the variables
+                $formatted_post = htmlspecialchars($row["postId"]);
+                $formatted_user = htmlspecialchars($this->loginStatus->userName);
+
+                // Check if the post has already been liked by the user
+                $query_is_liked = "SELECT * FROM `likes` WHERE (upper(`postId`) LIKE upper('$formatted_post')) AND (upper(`username`) LIKE upper('$formatted_user'))";
+                $result_is_liked = $this->conn->query($query_is_liked);
+
+                // Get the number of likes of this posst
+                $query_like_nb = "SELECT * FROM `likes` WHERE (upper(`postId`) LIKE upper('$formatted_post'))";
+                $like_nb = $this->conn->query($query_like_nb)->num_rows;
+
+                // If the post is liked (saved in the database)
+                if (mysqli_num_rows($result_is_liked) == 0) {
+                    echo '
+                    <button class="like-button" id="' . $row["postId"] . '">' . $like_nb . ' ♥</button>
+                    </div></div>
+                    ';
                 } else {
-                    // Format the variables
-                    $formatted_post = htmlspecialchars($row["postId"]);
-                    $formatted_user = htmlspecialchars($this->loginStatus->userName);
-
-                    // Check if the post has already been liked by the user
-                    $query_like = "SELECT * FROM `likes` WHERE (upper(`postId`) LIKE upper('$formatted_post')) AND (upper(`username`) LIKE upper('$formatted_user'))";
-                    $result_like = $this->conn->query($query_like);
-
-                    if (mysqli_num_rows($result_like) == 0) {
-                        echo '
-                        <div class="post-likes"><button class="like-button" id="' . $row["postId"] . '">Like</button></div>
-                    </div>
+                    echo '
+                    <button class="like-button like-button-on" id="' . $row["postId"] . '">' . $like_nb . ' ♥</button>
+                    </div></div>
                     ';
-                    } else {
-                        echo '
-                        <div class="post-likes"><button class="like-button like-button-on" id="' . $row["postId"] . '">Like</button></div>
-                    </div>
-                    ';
-                    }
                 }
             }
         } else {
             echo '
                 <div><p>Il n\'y a pas de post dans ce blog.</p></div>
                 ';
-
-            if ($isMyBlog) {
-                ?>
-
-                <?php
-            }
-
-
         }
 
     }
 
-    // Function that close database connexion
-    //--------------------------------------------------------------------------------
+// Function that close database connexion
+//--------------------------------------------------------------------------------
 
     function DisconnectDatabase()
     {
