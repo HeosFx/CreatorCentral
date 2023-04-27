@@ -21,9 +21,10 @@ async function doQuery(postId, user) {
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function() {
         // If the query is well executed
-        if (this.responseText.includes('OK')) {
+        if (!this.responseText.includes('ERROR') && !this.responseText.includes("NOTLOGGEDIN")) {
             // Update the button
             button.classList.contains('like-button-on') ? button.classList.remove('like-button-on') : button.classList.add('like-button-on');
+            button.innerHTML = this.responseText + " ♥";
         }
     }
     xhttp.open("GET", "./ajax/like-query.php?user="+user+"&postID="+postId, true); //Le booléen final dit si le chargement est asynchrone ou non

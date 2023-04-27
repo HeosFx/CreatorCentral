@@ -27,10 +27,18 @@ if (!empty($username)) {
     }
     $result = $SQLconn->conn->query($query);
 
+    // get the actualised number of likes
+    $query = "SELECT * FROM `likes` WHERE (upper(`postId`) LIKE upper('$formatted_post'))";
+    $result = $SQLconn->conn->query($query);
+
     if (!empty($result)) {
-        echo 'OK';
+        echo $result->num_rows;
     } else {
         echo 'ERROR';
     }
+}
+// If the usser isn't connected
+else {
+    echo 'NOTLOGGEDIN';
 }
 ?>
