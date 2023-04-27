@@ -72,3 +72,15 @@ la sécurité des utilisateurs.
 ### Esthétique
 
 - Nous avons porté une attention particulière à l'esthétique du site en implémentant des animations et une interface utilisateur plus agréable d'utilisation.
+
+## Comptes de présentation
+
+Voici une liste de compte présent dans la base de donnée :
+
+Username / Mot de passe
+
+- maxime / maxime12
+- flavian / 12345678
+- user1 / azerty01
+- user2 / azerty02
+- user3 / azerty03
