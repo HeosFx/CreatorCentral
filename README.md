@@ -69,6 +69,10 @@ la sécurité des utilisateurs.
 
 - Les utilisateurs peuvent liker les posts des autres utilisateurs. Un compteur apparait pour afficher le nombre de likes.
 
+### Gestions des images
+
+- Les images ajoutées par les utilisateurs dans leurs posts sont supprimées du serveur lorsqu'elles sont remplacées par une autre image ou que le post est supprimé.
+
 ### Esthétique
 
 - Nous avons porté une attention particulière à l'esthétique du site en implémentant des animations et une interface utilisateur plus agréable d'utilisation.
