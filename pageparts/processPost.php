@@ -34,10 +34,13 @@ if (isset($_POST["action"])) {
     }
     // removing an old post
     elseif ($_POST["action"] == "delete") {
+        //delete the image first
+        $img = new ImgFileUploader($SQLconn);
+        $img->DeleteImage($_POST["postID"]);
+
+        // then remove the post from the database
         $query = "DELETE FROM `posts` WHERE `postId` = " . $_POST["postID"];
         $result = $SQLconn->query($query);
-
-        //TODO : effacer le fichier si le post avait une image
     }
 
     header("Location: ../feed.php");
