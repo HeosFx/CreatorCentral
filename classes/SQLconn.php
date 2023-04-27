@@ -99,6 +99,9 @@ class SQLconn
 
     function GenerateHTML_forPostsPage($isMyBlog)
     {
+        // Set the default timezone
+        date_default_timezone_set('Europe/Paris');
+
         // Query on either the whole database or only the elements that corresponds to the research
         if (!empty($_GET) && isset($_GET["search"])) {
             // Get the value sent
