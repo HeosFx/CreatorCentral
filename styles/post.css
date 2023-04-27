@@ -101,6 +101,9 @@
     grid-area: 5 / 1 / span 1 / span 2;
     margin-inline: 10%;
     justify-self: center;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }
 
 .like-button {
@@ -110,7 +113,7 @@
     color: whitesmoke;
     border: none;
     border-radius: 50px;
-    height: 4vh;
+    height: 38px;
     width: 100px;
     margin: 0;
     margin-top: 5px;
@@ -130,3 +133,42 @@
 .like-button-on {
     background: var(--green-accent);
 }
+
+.like-button-on:hover{
+    background-color: var(--green-accent-darker);
+}
+
+/* example html code 
+   the order of the divs inside the post doesn't matter
+
+<div class="post-container">
+    <div class="post">
+        <div class="post-username"><p>@user1</p></div>
+        <div class="post-title"><p>Je suis le titre qsd qdqs q dqsssqdqsdqsd qds
+            <p></div>
+        <div class="post-image"><p>Test</p></div>
+        <div class="post-text"><p>Je suis le texte bla bla blabla bla bla blabla bla bla blablabla bla blablabla bla
+            qsdljqsjl qsjd qsjl h jqs jqshdjsqkjk qshjkqsjdk djkqjk q qsdksh kqshdjkqshdjk qkjqsjksqjk qsjkqsjkd qsjk
+            qsjkdjkdqjk jqsh jqshdjkqsh djkdjkqsj kqsjkd qjkqdhskdh jk
+            blabla </p></div>
+        <div class="post-likes"><p>Like</p></div>
+        <div class="post-date"><p>26 avril 2023</p></div>
+    </div>
+
+
+
+    <div class="post">
+        <div class="post-username"><p>@user1</p></div>
+        <div class="post-title"><p>Je suis le titre qsd qdqs q dqsssqdqsdqsd qds
+            <p></div>
+        <div class="post-image"><p>Test</p></div>
+        <div class="post-text"><p>Je suis le texte bla bla blabla bla bla blabla bla bla blablabla bla blablabla bla
+            qsdljq
+            blabla </p></div>
+        <div class="post-likes"><p>Like</p></div>
+        <div class="post-date"><p>24 avril 2023</p></div>
+    </div>
+
+</div>
+
+*/
