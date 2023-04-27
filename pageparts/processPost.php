@@ -16,8 +16,10 @@ if (isset($_POST["action"])) {
                     WHERE `postId` = " . $_POST["postID"];
 
             $result = $SQLconn->conn->query($query);
-            $img = new ImgFileUploader($SQLconn);
-            $img->OverrideOldFile($_POST["postID"]);
+            if ($_FILES["imageFile"]["size"] > 0) {
+                $img = new ImgFileUploader($SQLconn);
+                $img->OverrideOldFile($_POST["postID"]);
+            }
         }
     }
     // when creating a new post
