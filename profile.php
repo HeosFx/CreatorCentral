@@ -19,7 +19,12 @@ $user = $SQLconn->loginStatus->userName;
     <link rel="stylesheet" href="styles/post.css">
 </head>
 
-<body>
+<body onload="init()">
+
+<!--Get the username of the current logged in user (global scope variable)-->
+<script>let user = "<?php echo $SQLconn->loginStatus->userName; ?>";</script>
+<script type="text/javascript" src="scripts/like.js"></script>
+
 <?php include "./pageparts/header.php" ?>
 
 <div class="main-container width-1000">
